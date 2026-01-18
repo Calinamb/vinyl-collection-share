@@ -55,7 +55,7 @@ Share a personal vinyl collection with others.
 
 ## Project Management
 Project planning and feature mapping is done using Trello.  
-Link: INSERT TRELLO LINK HERE
+Link: https://trello.com/invite/b/696d44ce93dbbd5809a78a10/ATTIdcfd679b7ced62641771959035d88bc23F61D7CA/vinyl-collection-share-project-plan
 # Vinyl Collection Share
 
 ## Project Description
