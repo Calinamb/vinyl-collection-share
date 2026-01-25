@@ -55,7 +55,7 @@ Share a personal vinyl collection with others.
 
 ## Project Management
 Project planning and feature mapping is done using Trello.  
-Link: INSERT TRELLO LINK HERE
+Link: https://trello.com/invite/b/696d44ce93dbbd5809a78a10/ATTIdcfd679b7ced62641771959035d88bc23F61D7CA/vinyl-collection-share-project-plan
 # Vinyl Collection Share
 
 ## Project Description
@@ -130,5 +130,39 @@ Link: INSERT TRELLO LINK HERE
 This repository currently contains scaffold code and project documentation.  
 Functionality will be implemented incrementally throughout the semester.# Vinyl Collection Share
 n
+## API Design
+
+The application exposes a REST-style API for managing vinyl collections and albums.
+The API is designed to support creating, modifying and sharing vinyl collections.
+
+This API does not handle user authentication.
+
+### Collections
+
+GET /collections  
+Returns a list of all vinyl collections.
+
+POST /collections  
+Creates a new vinyl collection.
+
+GET /collections/:id  
+Returns a single vinyl collection.
+
+PUT /collections/:id  
+Updates an existing vinyl collection.
+
+DELETE /collections/:id  
+Deletes a vinyl collection.
+
+### Albums
+
+POST /collections/:id/albums  
+Adds a new album to a vinyl collection.
+
+PUT /albums/:id  
+Updates an album.
+
+DELETE /albums/:id  
+Removes an album from a collection.
   
 
