@@ -108,3 +108,27 @@ Collected data:
 - username
 - consent to Terms of Service
 - account creation date
+
+## Privacy Policy
+
+This application collects minimal personal data required to create a user account. The only personal data stores isa user ID and a chosen username.
+
+The purpose:
+ The purpose of this is that user data is collected solely to allow users to create, manage and delete their vinyl collections. 
+
+Storage and Security:
+The user data is stored in server memory during development. No sensitive personal data is collected. 
+
+User rights:
+The users can request that their account can be deleted at any time. When an account is deleted, all personal data related to the user is removed. 
+
+Consent:
+The users must actively consent to this privacy policy before an account is created. 
+
+## Terms of Service 
+
+By creating an account, the user agrees to the terms of this service.
+
+The users retain ownership of all data they create. By using the service, the users grant the application permission to store and display their vinyl collections. 
+
+Users may delete their account at any time, which revokes consent and removed personal data. 
