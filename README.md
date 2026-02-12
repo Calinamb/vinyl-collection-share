@@ -97,7 +97,10 @@ Creates a new vinyl collection.
 
 Required fields:
 - title (string)
+
+Optional fields:
 - description (string)
+
 
 Returns:
 - id (system generated unique identifier)
@@ -143,8 +146,7 @@ Collected data:
 
 ## Privacy Policy
 
-This application collects minimal personal data required to create a user account. The only personal data stores isa user ID and a chosen username.
-
+This application collects minimal personal data required to create a user account. The only personal data stored is a system-generated user ID and a chosen username.
 The purpose:
  The purpose of this is that user data is collected solely to allow users to create, manage and delete their vinyl collections. 
 
@@ -163,4 +165,4 @@ By creating an account, the user agrees to the terms of this service.
 
 The users retain ownership of all data they create. By using the service, the users grant the application permission to store and display their vinyl collections. 
 
-Users may delete their account at any time, which revokes consent and removed personal data. 
+Users may delete their account at any time, which revokes consent and removes personal data.
