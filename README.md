@@ -68,22 +68,54 @@ The API is designed to support creating, modifying and sharing vinyl collections
 
 This API does not handle user authentication.
 
+### Users
+
+POST /users  
+Creates a new user.
+
+Required fields:
+- username (string)
+- consent (boolean, must be true)
+
+Returns:
+- id (uuid)
+- username
+- createdAt (ISO string)
+
+DELETE /users/:id  
+Deletes a user account and removes personal data for that user.
+
+(Optional)
+GET /users  
+Returns all users (development only, in-memory).
+
 ### Collections
 
-GET /collections  
-Returns a list of all vinyl collections.
+POST /collections
 
-POST /collections  
 Creates a new vinyl collection.
 
-GET /collections/:id  
-Returns a single vinyl collection.
+Required fields:
+- title (string)
+- description (string)
 
-PUT /collections/:id  
-Updates an existing vinyl collection.
+Returns:
+- id (system generated unique identifier)
+- title
+- description
+- createdAt
 
-DELETE /collections/:id  
-Deletes a vinyl collection.
+
+GET /collections/:id
+
+Returns a single vinyl collection by id.
+
+Returns:
+- id
+- title
+- description
+- createdAt
+- albums (array)
 
 ### Albums
 
