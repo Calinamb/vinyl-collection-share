@@ -13,6 +13,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../public")));
 
+
 const users = [];
 const collections = [];
 
@@ -91,7 +92,6 @@ app.get("/collections/:id", (req, res) => {
   res.json(collection);
 });
 
-app.use(express.static("public"));
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
