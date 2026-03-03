@@ -33,27 +33,33 @@ export default class UsersViewController {
       </section>
     `;
   }
-
-  async refreshUsers() {
+  
+async refreshUsers() {
+  try {
     this.users = await get("/users");
     this.render();
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
   }
+}
 
-  async handleCreate({ username, consent }) {
+ async handleCreate({ username, consent }) {
+  try {
     await post("/users", { username, consent });
     await this.refreshUsers();
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
   }
+}
 
   async handleDelete({ id }) {
     await del(`/users/${id}`);
     await this.refreshUsers();
   }
 
-  /**
-   * EDIT: Serveren din har ikke PUT /users/:id enda.
-   * For å oppfylle oppgaven lager vi UI-komponenten og gjør "edit" lokalt i listen.
-   * Når du senere lager PUT-endepunkt kan du bytte dette til API-kall.
-   */
+  
   async handleEdit({ id, username }) {
     const user = this.users.find(u => u.id === id);
     if (!user) return;
