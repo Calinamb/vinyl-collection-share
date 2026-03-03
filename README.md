@@ -166,3 +166,11 @@ By creating an account, the user agrees to the terms of this service.
 The users retain ownership of all data they create. By using the service, the users grant the application permission to store and display their vinyl collections. 
 
 Users may delete their account at any time, which revokes consent and removes personal data.
+
+
+## Live Deployment
+
+The application is deployed on Render.
+
+ https://vinyl-collection-share-1.onrender.com
+ 
