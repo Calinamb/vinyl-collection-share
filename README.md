@@ -87,7 +87,7 @@ Deletes a user account and removes personal data for that user.
 
 (Optional)
 GET /users  
-Returns all users (development only, in-memory).
+Returns all users development only, in-memory.
 
 ### Collections
 
@@ -151,7 +151,7 @@ The purpose:
  The purpose of this is that user data is collected solely to allow users to create, manage and delete their vinyl collections. 
 
 Storage and Security:
-The user data is stored in server memory during development. No sensitive personal data is collected. 
+ Th user data is stores in a cloud-based PostgreSQL database to ensure data persistence even if the servers restarts. No sensitive personal data is collected. 
 
 User rights:
 The users can request that their account can be deleted at any time. When an account is deleted, all personal data related to the user is removed. 
@@ -170,7 +170,6 @@ Users may delete their account at any time, which revokes consent and removes pe
 
 ## Live Deployment
 
-The application is deployed on Render.
+The application is deployed on Render:
 
  https://vinyl-collection-share-1.onrender.com
- 
