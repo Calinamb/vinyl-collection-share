@@ -5,7 +5,7 @@ import { pool } from "../db.mjs";
 export function createUsersRouter() {
   const router = Router();
 
-  // POST /users
+
   router.post("/", async (req, res) => {
     const { username, consent } = req.body;
 
@@ -31,7 +31,6 @@ export function createUsersRouter() {
     });
   });
 
-  // (DEV) GET /users
   router.get("/", async (req, res) => {
     const result = await pool.query(
       `SELECT id, username, consent, created_at
@@ -49,7 +48,7 @@ export function createUsersRouter() {
     );
   });
 
-  // DELETE /users/:id
+
   router.delete("/:id", async (req, res) => {
     const { id } = req.params;
 
