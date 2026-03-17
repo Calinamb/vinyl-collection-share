@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { validateCollection } from "../middleware/validateCollection.js"; 
+import { validateCollection } from "../middelwear/validateCollection.js"; 
 import { query } from "../db.mjs";
 
 // Vi fjerner "collections"-parameteren her, siden vi bruker DB nå
