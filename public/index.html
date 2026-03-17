@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinyl Collection Share</title>
+  <link rel="manifest" href="./manifest.json"/>
+  <link rel="stylesheet" href="./app.css" />
+</head>
+<body>
+  <header>
+    <h1>User Management</h1>
+  </header>
+
+  <main>
+  <section id="user-section">
+    <user-create></user-create>
+    <div id="users"></div>
+  </section>
+
+  <hr>
+
+  <section id="collection-section">
+    <h2>My Vinyl Collections</h2>
+    <form id="create-collection-form">
+      <input type="text" id="col-title" placeholder="Collection Name (e.g. 70s Rock)" required />
+      <button type="submit">Create Collection</button>
+    </form>
+    <div id="collection-list">
+      </div>
+  </section>
+</main>
+
+<template id="collection-detail-template">
+    <div class="view-header">
+        <button id="back-btn" >⬅ Tilbake</button>
+        <h2 id="view-title"></h2>
+    </div>
+    <div id="album-list"></div>
+    <form id="add-album-form">
+        <input type="text" id="album-artist" placeholder="Artist" required>
+        <input type="text" id="album-title" placeholder="Album tittel" required>
+        <button type="submit">Legg til album</button>
+    </form>
+</template>
+
+  <footer>
+    
+    <a href="./tos.html">Terms of Service</a> |
+    <a href="./privacy.html">Privacy Policy</a>
+  </footer>
+
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

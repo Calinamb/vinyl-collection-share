@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../Downloads/example"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "vinyl-collection-share"
+	}
+}
