@@ -1,14 +1,26 @@
 
+const translations = {
+    en: {
+        error_title: "Validation failed: A collection title is required."
+    },
+    no: {
+        error_title: "Validering feilet: Samlingen må ha en tittel."
+    }
+};
+
 export const validateCollection = (req, res, next) => {
-  const { title } = req.body;
+    const { title } = req.body;
 
-  if (!title || typeof title !== 'string' || title.trim() === "") {
+  
+    const langHeader = req.headers['accept-language'] || 'en';
+    const lang = langHeader.startsWith('no') ? 'no' : 'en';
 
-    return res.status(400).json({ 
-      error: "Validation failed: Title is required and must be a valid string." 
-    });
-  }
+    if (!title || typeof title !== 'string' || title.trim() === "") {
 
- 
-  next();
+        return res.status(400).json({ 
+            error: translations[lang].error_title 
+        });
+    }
+
+    next();
 };

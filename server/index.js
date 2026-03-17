@@ -20,12 +20,11 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../public")));
 
-// In-memory "database"
-const collections = [];
+
 
 // Mount routers
 app.use("/users", createUsersRouter());
-app.use("/collections", createCollectionsRouter(collections));
+
 
 const port = process.env.PORT || 3000;
 

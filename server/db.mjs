@@ -8,3 +8,5 @@ export const pool = new Pool({
     rejectUnauthorized: false,
   },
 });
+
+export const query = (text, params) => pool.query(text, params);
