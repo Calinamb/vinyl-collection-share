@@ -1,64 +1,64 @@
 import { Router } from "express";
-import { randomUUID } from "crypto";
-import { pool } from "../db.mjs";
-
+import { query } from "../db.mjs";
 export function createUsersRouter() {
   const router = Router();
 
-
+  // 1. REGISTER (Create new user)
   router.post("/", async (req, res) => {
-    const { username, consent } = req.body;
+    const { username, password, consent } = req.body;
 
-    if (!username || consent !== true) {
-      return res.status(400).json({ error: "Username and consent are required" });
+    if (!username || !password) {
+      return res.status(400).json({ error: "Username and password are required" });
     }
 
-    const id = randomUUID();
-
-    const result = await pool.query(
-      `INSERT INTO users (id, username, consent)
-       VALUES ($1, $2, $3)
-       RETURNING id, username, consent, created_at`,
-      [id, username, consent]
-    );
-
-    const u = result.rows[0];
-    res.status(201).json({
-      id: u.id,
-      username: u.username,
-      consent: u.consent,
-      createdAt: u.created_at,
-    });
-  });
-
-  router.get("/", async (req, res) => {
-    const result = await pool.query(
-      `SELECT id, username, consent, created_at
-       FROM users
-       ORDER BY created_at DESC`
-    );
-
-    res.json(
-      result.rows.map((u) => ({
-        id: u.id,
-        username: u.username,
-        consent: u.consent,
-        createdAt: u.created_at,
-      }))
-    );
-  });
-
-
-  router.delete("/:id", async (req, res) => {
-    const { id } = req.params;
-
-    const result = await pool.query(`DELETE FROM users WHERE id = $1`, [id]);
-
-    if (result.rowCount === 0) {
-      return res.status(404).json({ error: "User not found" });
+    try {
+      const result = await query(
+        "INSERT INTO users (username, password, consent) VALUES ($1, $2, $3) RETURNING id, username",
+        [username, password, consent]
+      );
+      res.status(201).json(result.rows[0]);
+    } catch (err) {
+      console.error("Registration error:", err);
+      res.status(500).json({ error: "Could not create user. Username might be taken." });
     }
+  });
 
-    res.status(204).end();
+  // 2. LOGIN (Verify user)
+  router.post("/login", async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+      const result = await query(
+        "SELECT id, username, password FROM users WHERE username = $1",
+        [username]
+      );
+
+      const user = result.rows[0];
+
+      // Check if user exists and password matches
+      if (!user || user.password !== password) {
+        return res.status(401).json({ error: "Invalid username or password" });
+      }
+
+      res.json({
+        message: "Login successful",
+        userId: user.id,
+        username: user.username
+      });
+    } catch (err) {
+      console.error("Login error:", err);
+      res.status(500).json({ error: "Server error during login" });
+    }
+  });
+
+  // 3. DEBUG (Check database content)
+  router.get("/check-database", async (req, res) => {
+    try {
+      const result = await query("SELECT id, username, password FROM users");
+      res.json(result.rows);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   });
 
   return router;
