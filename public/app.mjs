@@ -1,47 +1,39 @@
-import UsersViewController from "./controllers/usersController.mjs";
 import { get } from "./modules/fetchManager.mjs";
 import CollectionsViewController from "./controllers/collectionsViewController.mjs";
 
-const usersContainer = document.querySelector("#users");
-const collectionsContainer = document.querySelector("#collection-section");
-
-async function loadUsers() {
-    try {
-        const users = await get("/users");
-        new UsersViewController(usersContainer, users);
-    } catch (err) {
-        console.error("Feil ved henting av brukere:", err);
-    }
+const userId = localStorage.getItem("userId");
+if (!userId) {
+    window.location.href = "index.html";
 }
 
+const collectionsContainer = document.querySelector("#collection-section");
 
 async function loadCollections() {
     try {
+
         const collections = await get("/collections");
         new CollectionsViewController(collectionsContainer, collections);
+
     } catch (err) {
-        console.error("Feil ved henting av collections:", err);
+        console.error("Error fetching collections:", err);
     }
 }
 
-
 window.addEventListener("collection:open", async (e) => {
     const { id } = e.detail;
-
     try {
         const collection = await get(`/collections/${id}`);
+        console.log("Viewing collection:", collection);
 
-       
-        console.log("Vis collection:", collection);
-
-    
-        alert("Her skal detail view vises for: " + collection.title);
-
+        alert("Opening: " + collection.title);
     } catch (err) {
         console.error(err);
     }
 });
 
-
-loadUsers();
 loadCollections();
+
+document.getElementById("logoutBtn")?.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "index.html";
+});

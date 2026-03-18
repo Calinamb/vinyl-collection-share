@@ -33,3 +33,16 @@ input {
     border: none;
     margin-right: 10px;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+#login-section {
+    text-align: center;
+    padding: 50px 20px;
+}
