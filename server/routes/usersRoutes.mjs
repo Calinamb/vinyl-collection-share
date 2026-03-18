@@ -3,7 +3,7 @@ import { query } from "../db.mjs";
 export function createUsersRouter() {
   const router = Router();
 
-  // 1. REGISTER (Create new user)
+  
   router.post("/", async (req, res) => {
     const { username, password, consent } = req.body;
 
@@ -23,7 +23,7 @@ export function createUsersRouter() {
     }
   });
 
-  // 2. LOGIN (Verify user)
+
   router.post("/login", async (req, res) => {
     const { username, password } = req.body;
 
@@ -35,7 +35,7 @@ export function createUsersRouter() {
 
       const user = result.rows[0];
 
-      // Check if user exists and password matches
+   
       if (!user || user.password !== password) {
         return res.status(401).json({ error: "Invalid username or password" });
       }
@@ -50,6 +50,11 @@ export function createUsersRouter() {
       res.status(500).json({ error: "Server error during login" });
     }
   });
+} catch (err) {
+  console.error("Database error:", err);
+  // Denne linjen vil fortelle oss nøyaktig hvorfor det feiler:
+  res.status(500).json({ error: "DB Error: " + err.message });
+}
 
   // 3. DEBUG (Check database content)
   router.get("/check-database", async (req, res) => {
