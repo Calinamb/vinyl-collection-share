@@ -54,7 +54,7 @@ export function createUsersRouter() {
 
 
   
-  // 3. DEBUG (Check database content)
+
   router.get("/check-database", async (req, res) => {
     try {
       const result = await query("SELECT id, username, password FROM users");
