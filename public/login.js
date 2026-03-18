@@ -1,4 +1,4 @@
-// Vi henter elementene vi laget i index.html
+
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");

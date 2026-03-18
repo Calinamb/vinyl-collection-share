@@ -91,6 +91,10 @@ export function createUsersRouter() {
     }
     res.status(204).end();
   });
+  
 
   return router;
+  
 }
+
+export default router;

@@ -2,67 +2,63 @@ import { Router } from "express";
 import { validateCollection } from "../middelwear/validateCollection.js"; 
 import { query } from "../db.mjs";
 
-// Vi fjerner "collections"-parameteren her, siden vi bruker DB nå
-export function createCollectionsRouter() {
+export function createUsersRouter() {
   const router = Router();
 
-  // 1. HENT ALLE SAMLINGER
-  router.get("/", async (req, res) => {
-    try {
-      const result = await query("SELECT * FROM collections ORDER BY created_at DESC");
-      res.json(result.rows);
-    } catch (err) {
-      console.error("Feil ved henting:", err);
-      res.status(500).json({ error: "Kunne ikke hente samlinger fra databasen" });
-    }
-  });
 
-  // 2. HENT ÉN SPESIFIKK SAMLING
-  router.get("/:id", async (req, res) => {
-    const { id } = req.params;
-    try {
-      const result = await query("SELECT * FROM collections WHERE id = $1", [id]);
-      
-      if (result.rows.length === 0) {
-        return res.status(404).json({ error: "Samlingen ble ikke funnet" });
-      }
-      res.json(result.rows[0]);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: "Serverfeil ved henting av samling" });
-    }
-  });
+  router.post("/", async (req, res) => {
+    const { username, password, consent } = req.body;
 
-  // 3. OPPRETT NY SAMLING
-  router.post("/", validateCollection, async (req, res) => {
-    const { title } = req.body; // Vi dropper 'description' hvis du ikke har det i DB-tabellen ennå
+    if (!username || !password) {
+      return res.status(400).json({ error: "Username and password are required" });
+    }
+
     try {
       const result = await query(
-        "INSERT INTO collections (title) VALUES ($1) RETURNING *",
-        [title]
+        "INSERT INTO users (username, password, consent) VALUES ($1, $2, $3) RETURNING id, username",
+        [username, password, consent]
       );
       res.status(201).json(result.rows[0]);
     } catch (err) {
-      console.error("Feil ved lagring:", err);
-      res.status(500).json({ error: "Kunne ikke lagre samlingen i databasen" });
+      console.error("Registration error:", err);
+      res.status(500).json({ error: "Could not create user. Username might be taken." });
     }
   });
 
-  // 4. SLETT SAMLING
-  router.delete("/:id", async (req, res) => {
-    const { id } = req.params;
+
+  router.post("/login", async (req, res) => {
+    const { username, password } = req.body;
+
     try {
-      const result = await query("DELETE FROM collections WHERE id = $1", [id]);
-      
-      // Sjekk om noe faktisk ble slettet (rowsAffected finnes ikke direkte i pg, men vi kan sjekke result.rowCount)
-      if (result.rowCount === 0) {
-        return res.status(404).json({ error: "Samlingen finnes ikke" });
+      const result = await query(
+        "SELECT id, username, password FROM users WHERE username = $1",
+        [username]
+      );
+
+      const user = result.rows[0];
+
+    
+      if (!user || user.password !== password) {
+        return res.status(401).json({ error: "Invalid username or password" });
       }
-      
-      res.status(204).end();
+
+      res.json({
+        message: "Login successful",
+        userId: user.id,
+        username: user.username
+      });
     } catch (err) {
-      console.error("Feil ved sletting:", err);
-      res.status(500).json({ error: "Kunne ikke slette samlingen" });
+      console.error("Login error:", err);
+      res.status(500).json({ error: "Server error during login" });
+    }
+  });
+
+  router.get("/check-database", async (req, res) => {
+    try {
+      const result = await query("SELECT id, username, password, consent FROM users");
+      res.json(result.rows);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
   });
 
