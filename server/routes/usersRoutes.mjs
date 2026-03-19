@@ -24,33 +24,20 @@ export function createUsersRouter() {
   });
 
 
-  router.post("/login", async (req, res) => {
-    const { username, password } = req.body;
+  router.post("/", async (req, res) => {
+  const { username, password } = req.body; // Vi tar ikke imot consent her
 
-    try {
+  try {
     const result = await query(
-  "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id, username",
-  [username, password]
-);
-
-      const user = result.rows[0];
-
-   
-      if (!user || user.password !== password) {
-        return res.status(401).json({ error: "Invalid username or password" });
-      }
-
-      res.json({
-        message: "Login successful",
-        userId: user.id,
-        username: user.username
-      });
-    } catch (err) {
-  console.error("Database error:", err);
- 
-  res.status(500).json({ error: "DB Error: " + err.message });
-}
-  });
+      "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id, username",
+      [username, password] // Kun to ting her nå
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error("Registration error:", err);
+    res.status(500).json({ error: "Could not create user." });
+  }
+});
 
 
   
