@@ -24,7 +24,7 @@ export function createUsersRouter() {
   });
 
 
-  router.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { username, password } = req.body; // Vi tar ikke imot consent her
 
   try {
