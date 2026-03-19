@@ -28,10 +28,10 @@ export function createUsersRouter() {
     const { username, password } = req.body;
 
     try {
-      const result = await query(
-        "SELECT id, username, password FROM users WHERE username = $1",
-        [username]
-      );
+    const result = await query(
+  "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id, username",
+  [username, password]
+);
 
       const user = result.rows[0];
 
@@ -47,7 +47,7 @@ export function createUsersRouter() {
       });
     } catch (err) {
   console.error("Database error:", err);
-  // Denne linjen vil fortelle oss nøyaktig hvorfor det feiler:
+ 
   res.status(500).json({ error: "DB Error: " + err.message });
 }
   });
