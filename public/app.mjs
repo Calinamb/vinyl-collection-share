@@ -10,8 +10,8 @@ const collectionsContainer = document.querySelector("#collection-section");
 
 async function loadCollections() {
     try {
-
-        const collections = await get("/collections");
+        // ENDRET: Henter nå kun dine samlinger ved oppstart
+        const collections = await get(`/collections/user/${userId}`);
         new CollectionsViewController(collectionsContainer, collections);
 
     } catch (err) {
@@ -24,7 +24,6 @@ window.addEventListener("collection:open", async (e) => {
     try {
         const collection = await get(`/collections/${id}`);
         console.log("Viewing collection:", collection);
-
         alert("Opening: " + collection.title);
     } catch (err) {
         console.error(err);
