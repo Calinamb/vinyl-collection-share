@@ -25,20 +25,23 @@ export function createUsersRouter() {
 
 
 router.post("/", async (req, res) => {
-  const { username, password } = req.body; // Vi tar ikke imot consent her
+ 
+  const { username, password, consent } = req.body; 
 
   try {
+    
     const result = await query(
-      "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id, username",
-      [username, password] // Kun to ting her nå
+      "INSERT INTO users (username, password, consent) VALUES ($1, $2, $3) RETURNING id, username",
+      [username, password, consent]
     );
+    
+    console.log("User created successfully:", result.rows[0]);
     res.status(201).json(result.rows[0]);
   } catch (err) {
     console.error("Registration error:", err);
-    res.status(500).json({ error: "Could not create user." });
+    res.status(500).json({ error: "Could not create user: " + err.message });
   }
 });
-
 
   
 
