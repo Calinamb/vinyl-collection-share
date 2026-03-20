@@ -36,7 +36,6 @@ export function createUsersRouter() {
       if (result.rows.length > 0) {
         const user = result.rows[0];
 
-        // Sjekker om passordet stemmer (Husk: I en ekte app ville vi brukt bcrypt her)
         if (user.password === password) {
           console.log("Login successful for:", username);
           return res.status(200).json({ 

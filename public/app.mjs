@@ -10,7 +10,7 @@ const collectionsContainer = document.querySelector("#collection-section");
 
 async function loadCollections() {
     try {
-        // ENDRET: Henter nå kun dine samlinger ved oppstart
+       
         const collections = await get(`/collections/user/${userId}`);
         new CollectionsViewController(collectionsContainer, collections);
 
