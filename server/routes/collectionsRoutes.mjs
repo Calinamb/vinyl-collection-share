@@ -5,6 +5,23 @@ import { query } from "../db.mjs";
 export function createCollectionsRouter() {
   const router = Router();
 
+  router.get("/all", async (req, res) => {
+    try {
+      const result = await query(
+        `SELECT c.*, u.username, COUNT(a.id) AS album_count 
+         FROM collections c
+         JOIN users u ON c.user_id = u.id
+         LEFT JOIN albums a ON c.id = a.collection_id
+         GROUP BY c.id, u.username
+         ORDER BY c.created_at DESC`
+      );
+      res.json(result.rows);
+    } catch (err) {
+      console.error("Error fetching community collections:", err);
+      res.status(500).json({ error: "Could not fetch community" });
+    }
+  });
+
   router.get("/user/:userId", async (req, res) => {
     const { userId } = req.params;
     try {
