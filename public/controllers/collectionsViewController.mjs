@@ -30,23 +30,23 @@ export default class CollectionsViewController {
     const currentUserId = localStorage.getItem("userId");
 
     this.rootEl.innerHTML = `
-      <section>
-        <h2>My Vinyl Collections</h2>
-        <collection-create></collection-create>
-        <div class="collection-grid">
-          ${this.collections.map(c => {
-            const isOwner = String(c.user_id) === String(currentUserId);
-            return `
-              <div class="collection-card">
-                <strong>${escapeHtml(c.title)}</strong>
-                <p style="opacity:.7">(${c.album_count || 0} albums)</p>
-                <div style="margin-top:10px">
-                  <button type="button" class="open-btn" data-id="${c.id}">Open</button>
-                  ${isOwner ? `<collection-delete collection-id="${c.id}"></collection-delete>` : ''}
-                </div>
-              </div>
-            `;
-          }).join("")}
+    <section>
+    <h2>My Vinyl Collections</h2>
+    <collection-create></collection-create>
+    <div class="collection-grid">
+    ${this.collections.map(c => {
+    const isOwner = String(c.user_id) === String(currentUserId);
+    return `
+    <div class="collection-card">
+    <strong>${escapeHtml(c.title)}</strong>
+    <p style="opacity:.7">(${c.album_count || 0} albums)</p>
+    <div style="margin-top:10px">
+    <button type="button" class="open-btn" data-id="${c.id}">Open</button>
+    ${isOwner ? `<collection-delete collection-id="${c.id}"></collection-delete>` : ''}
+       </div>
+    </div>
+         `;
+         }).join("")}
         </div>
       </section>
     `;
@@ -125,9 +125,12 @@ export default class CollectionsViewController {
         return;
       }
 
-      listContainer.innerHTML = albums.map(a => `
+   listContainer.innerHTML = albums.map(a => `
         <li class="album-item">
-          <strong>${escapeHtml(a.artist)}</strong> - ${escapeHtml(a.title)}
+          <div class="album-info">
+            <span class="album-title">${escapeHtml(a.title)}</span>
+            <span class="album-artist">by ${escapeHtml(a.artist)}</span>
+          </div>
         </li>
       `).join("");
     } catch (err) {
@@ -140,9 +143,9 @@ class CollectionCreate extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div style="margin-bottom: 20px;">
-        <form id="col-form">
-          <input name="title" placeholder="New Collection Title" required />
-          <button type="submit">Create Collection</button>
+      <form id="col-form">
+      <input name="title" placeholder="New Collection Title" required />
+      <button type="submit">Create Collection</button>
         </form>
       </div>
     `;
@@ -175,11 +178,11 @@ class AlbumAddForm extends HTMLElement {
   connectedCallback() {
     const colId = this.getAttribute("collection-id");
     this.innerHTML = `
-      <form id="album-form" style="background: #333; padding: 15px; border-radius: 8px; margin: 15px 0;">
-        <input name="artist" placeholder="Artist Name" required />
-        <input name="title" placeholder="Album Title" required />
-        <button type="submit">Add Vinyl</button>
-      </form>
+     <form id="album-form" style="background: #FAFAFA; border: 2px solid #F0F0F0; padding: 15px; border-radius: 12px; margin: 15px 0;">
+  <input name="title" placeholder="Album Title" required />
+  <input name="artist" placeholder="Artist Name" required />
+  <button type="submit">Add Vinyl</button>
+</form>
     `;
 
     this.querySelector("#album-form").addEventListener("submit", (e) => {

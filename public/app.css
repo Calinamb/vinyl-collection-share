@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap');
 
-/* Grunnleggende oppsett */
 body {
     background-color: #FFF5D0;
     color: #1B475D;
@@ -23,17 +22,15 @@ h1 {
     letter-spacing: -1px;
 }
 
-/* Main tilpasser seg innholdet */
 main {
     background-color: #ffffff;
     padding: 30px;
     border-radius: 24px;
     box-shadow: 0 15px 35px rgba(27, 71, 93, 0.1);
     width: 100%;
-    max-width: 900px; /* Gjør den bredere for samlingene */
+    max-width: 900px; 
 }
 
-/* For login-siden holder vi den smal */
 #login-section {
     max-width: 400px;
     margin: 0 auto;
@@ -45,7 +42,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Skjemaer og Inputs */
 input {
     display: block;
     width: 100%;
@@ -66,7 +62,6 @@ input:focus {
     background-color: #ffffff;
 }
 
-/* Knapper - Beholder din stil */
 button {
     padding: 14px 24px;
     background-color: #FAD564;
@@ -94,7 +89,6 @@ button:active {
     box-shadow: 0 0px 0px transparent;
 }
 
-/* GRID FOR SAMLINGER (Oversikten) */
 .collection-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -119,7 +113,6 @@ button:active {
     margin-bottom: 5px;
 }
 
-/* ALBUM LISTE (Inne i en samling) */
 #album-list-container {
     list-style: none;
     padding: 0;
@@ -137,7 +130,6 @@ button:active {
     align-items: center;
 }
 
-/* Spesifikke knapper */
 #backBtn {
     background-color: #1B475D;
     color: white;
@@ -151,7 +143,6 @@ button:active {
     margin-bottom: 10px;
 }
 
-/* Tekst og lenker */
 p { text-align: center; margin-top: 20px; }
 
 a {
@@ -165,4 +156,45 @@ footer {
     margin-top: 40px;
     font-size: 0.75rem;
     opacity: 0.6;
+}
+
+/* --- NYTT FOR LOGG UT-KNAPP --- */
+#logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: auto;
+    padding: 8px 16px;
+    background-color: transparent;
+    border: 2px solid #1B475D;
+    color: #1B475D;
+    box-shadow: none;
+    font-size: 0.8rem;
+}
+
+#logout-btn:hover {
+    background-color: #1B475D;
+    color: #FFF5D0;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- NYTT FOR ALBUM-TEKST --- */
+.album-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.album-title {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #1B475D;
+}
+
+.album-artist {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-top: 4px;
 }
