@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap');
 
+/* Grunnleggende oppsett */
 body {
     background-color: #FFF5D0;
     color: #1B475D;
@@ -7,51 +8,49 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column; 
-    justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 h1 {
     font-weight: 800;
     font-size: 2.2rem;
     color: #1B475D;
-    margin-bottom: 30px; 
+    margin-bottom: 20px; 
     text-align: center;
     letter-spacing: -1px;
 }
 
+/* Main tilpasser seg innholdet */
 main {
     background-color: #ffffff;
-    padding: 40px;
+    padding: 30px;
     border-radius: 24px;
     box-shadow: 0 15px 35px rgba(27, 71, 93, 0.1);
     width: 100%;
+    max-width: 900px; /* Gjør den bredere for samlingene */
+}
+
+/* For login-siden holder vi den smal */
+#login-section {
     max-width: 400px;
+    margin: 0 auto;
 }
 
 h2 {
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-bottom: 20px;
-    text-align: left;
 }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-
-#username, 
-#reg-username,
-input[type="text"] {
+/* Skjemaer og Inputs */
+input {
     display: block;
     width: 100%;
     box-sizing: border-box;
-    padding: 16px;
+    padding: 14px;
     border: 2px solid #F0F0F0;
     border-radius: 12px;
     font-family: 'Montserrat', sans-serif;
@@ -59,47 +58,29 @@ input[type="text"] {
     background-color: #FAFAFA;
     margin-bottom: 15px;
     outline: none;
-}
-
-
-#password, 
-#reg-password,
-input[type="password"] {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 16px;
-    border: 2px solid #F0F0F0;
-    border-radius: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    background-color: #FAFAFA;
-    margin-bottom: 15px;
-    outline: none;
+    transition: border-color 0.2s;
 }
 
 input:focus {
-    border-color: #8EBD9D;
-    outline: none;
+    border-color: #FAD564;
     background-color: #ffffff;
 }
 
+/* Knapper - Beholder din stil */
 button {
-    width: 100%;
-    padding: 16px;
+    padding: 14px 24px;
     background-color: #FAD564;
     color: #1B475D;
     border: none;
     border-radius: 12px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 4px 0px #e5c04f;
-    margin-top: 10px;
 }
 
 button:hover {
@@ -113,26 +94,71 @@ button:active {
     box-shadow: 0 0px 0px transparent;
 }
 
-.consent-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 15px 0;
-    font-size: 0.85rem;
-    color: #1B475D;
+/* GRID FOR SAMLINGER (Oversikten) */
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
 }
 
-p {
+.collection-card {
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 18px;
+    border: 2px solid #F0F0F0;
     text-align: center;
-    margin-top: 25px;
-    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.collection-card strong {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* ALBUM LISTE (Inne i en samling) */
+#album-list-container {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.album-item {
+    background: #FAFAFA;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    border-left: 6px solid #FAD564;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Spesifikke knapper */
+#backBtn {
+    background-color: #1B475D;
+    color: white;
+    margin-bottom: 20px;
+    width: auto;
+    box-shadow: 0 4px 0px #0d2a38;
+}
+
+.open-btn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Tekst og lenker */
+p { text-align: center; margin-top: 20px; }
 
 a {
     color: #1B475D;
     font-weight: 800;
     text-decoration: none;
-    border-bottom: 2px solid #B4BD62;
+    border-bottom: 2px solid #FAD564;
 }
 
 footer {
