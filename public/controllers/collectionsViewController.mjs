@@ -20,8 +20,8 @@ export default class CollectionsViewController {
   }
 
   render() {
-    this.rootEl.innerHTML = ""; // Tømmer først
-    this.renderNavigation(); // Legger til knappene øverst
+    this.rootEl.innerHTML = "";
+    this.renderNavigation();
 
     if (this.currentCollection) {
       this.renderDetailView();
@@ -29,26 +29,26 @@ export default class CollectionsViewController {
       this.renderListView();
     }
   }
-
   renderNavigation() {
     const nav = document.createElement("div");
     nav.innerHTML = `
-      <button id="community-nav-btn">${this.mode === "my-vinyls" ? "🌎 Community" : "🏠 My Collection"}</button>
-      <button id="logout-btn">Logout</button>
+      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? "🌎 Community" : "🏠 My Collection"}</button>
+      <button type="button" id="logout-btn">Logout</button>
     `;
     this.rootEl.appendChild(nav);
 
-    document.getElementById("logout-btn").onclick = () => {
+   
+    nav.querySelector("#logout-btn").addEventListener("click", () => {
       localStorage.clear();
       location.reload();
-    };
+    });
 
-    document.getElementById("community-nav-btn").onclick = async () => {
+    nav.querySelector("#community-nav-btn").addEventListener("click", async () => {
       this.mode = (this.mode === "my-vinyls") ? "community" : "my-vinyls";
       this.currentCollection = null;
       await this.refreshCollections();
       this.render();
-    };
+    });
   }
 
   renderListView() {
