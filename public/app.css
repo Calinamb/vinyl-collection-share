@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap');
 
+/* --- GRUNNLEGGENDE --- */
 body {
     background-color: #FFF5D0;
     color: #1B475D;
@@ -30,6 +31,8 @@ h1, h2 {
     letter-spacing: -1px;
 }
 
+/* --- FELLES KNAPPE-STYLING --- */
+/* Dette er stilen for ALLE knapper */
 button, .open-btn, #logout-btn, #community-nav-btn {
     padding: 12px 24px;
     background-color: #FAD564;
@@ -50,35 +53,28 @@ button:hover {
     box-shadow: 0 6px 0px #e5c04f;
 }
 
+/* --- MIDTSTILLING AV HOVEDKNAPPER --- */
+/* Denne regelen tvinger alle knapper inni skjemaer til å bli midtstilt */
 form button, 
 #login-section button, 
 .collection-create button {
     display: block;
-    margin: 20px auto;
+    margin: 20px auto; /* Dette midtstiller knappen */
     width: 100%;
-    max-width: 280px;
+    max-width: 280px; /* Gjør at den ikke blir for bred */
 }
 
-#logout-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    box-shadow: none;
-}
+/* --- NAVIGASJON (Hjørner) --- */
+#logout-btn { position: absolute; top: 20px; right: 20px; box-shadow: none; }
+#community-nav-btn { position: absolute; top: 20px; left: 20px; }
 
-#community-nav-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
+/* Skjul nav på login */
 main:has(#login-section) ~ #logout-btn,
-main:has(#login-section) ~ #community-nav-btn,
-#login-section #logout-btn,
-#login-section #community-nav-btn {
+main:has(#login-section) ~ #community-nav-btn {
     display: none !important;
 }
 
+/* --- LOGIN / REGISTER SPESIFIKT --- */
 #login-section {
     max-width: 400px;
     margin: 0 auto;
@@ -87,19 +83,18 @@ main:has(#login-section) ~ #community-nav-btn,
 #login-section form {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: stretch; /* Viktig for at input fyller bredden */
 }
 
+/* Fikser sjekkboks-området */
 .checkbox-container, 
-div:has(input[type="checkbox"]),
-label:has(input[type="checkbox"]) {
+div:has(input[type="checkbox"]) {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Sjekkboks til venstre */
     gap: 10px;
     margin: 10px 0;
     font-size: 0.9rem;
-    cursor: pointer;
 }
 
 input[type="checkbox"] {
@@ -112,6 +107,7 @@ input[type="checkbox"] {
     margin-top: 20px;
 }
 
+/* --- INPUT FELTER --- */
 input:not([type="checkbox"]) {
     width: 100%;
     padding: 14px;
@@ -119,14 +115,9 @@ input:not([type="checkbox"]) {
     border: 2px solid #F0F0F0;
     border-radius: 12px;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
 }
 
-input:focus {
-    border-color: #FAD564;
-    outline: none;
-}
-
+/* --- GRID & LISTE --- */
 .collection-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -141,19 +132,5 @@ input:focus {
     text-align: center;
 }
 
-.open-btn {
-    width: 100%;
-    margin: 10px 0;
-}
-
-#backBtn {
-    background: #1B475D;
-    color: white;
-    box-shadow: 0 4px 0px #0d2a38;
-}
-
-footer {
-    margin-top: 40px;
-    font-size: 0.75rem;
-    opacity: 0.6;
-}
+.open-btn { width: 100%; margin: 10px 0; }
+#backBtn { background: #1B475D; color: white; box-shadow: 0 4px 0px #0d2a38; }
