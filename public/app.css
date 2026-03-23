@@ -10,18 +10,9 @@ body {
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
-    padding: 80px 20px 20px 20px; /* Mer padding på toppen for å gi plass til knappene i hjørnene */
+    padding: 80px 20px 20px 20px; /* Plass til hjørneknapper */
     box-sizing: border-box;
     position: relative;
-}
-
-h1 {
-    font-weight: 800;
-    font-size: 2.2rem;
-    color: #1B475D;
-    margin-bottom: 20px; 
-    text-align: center;
-    letter-spacing: -1px;
 }
 
 main {
@@ -33,56 +24,73 @@ main {
     max-width: 900px; 
 }
 
-/* --- NAVIGASJON (Hjørner) --- */
-#logout-btn, #community-nav-btn {
-    position: absolute;
-    top: 20px;
-    width: auto;
-    padding: 10px 18px;
-    font-size: 0.75rem;
+h1 {
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 2.2rem;
+    color: #1B475D;
+    margin-bottom: 20px; 
+    text-align: center;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* --- FELLES KNAPPE-STYLING --- */
+button, .open-btn, #logout-btn, #community-nav-btn {
+    padding: 12px 20px;
+    background-color: #FAD564;
+    color: #1B475D;
+    border: none;
     border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: none;
+    box-shadow: 0 4px 0px #e5c04f;
+    display: inline-block;
 }
 
-#logout-btn {
-    right: 20px;
-    background-color: transparent;
-    border: 2px solid #1B475D;
-    color: #FAD564;
-}
-
-#logout-btn:hover {
-    background-color: #1B475D;
-    color: #FFF5D0;
+button:hover, .open-btn:hover, #logout-btn:hover, #community-nav-btn:hover {
+    background-color: #fce08a;
     transform: translateY(-2px);
+    box-shadow: 0 6px 0px #e5c04f;
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 0px 0px transparent;
+}
+
+/* --- NAVIGASJON I HJØRNENE --- */
+#logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 #community-nav-btn {
+    position: absolute;
+    top: 20px;
     left: 20px;
-    background-color: #1B475D;
-    color: #FFF5D0;
-    border: none;
 }
 
-#community-nav-btn:hover {
-    background-color: #2a6380;
-    transform: translateY(-2px);
+/* Skjul navigasjon på login/register-skjerm */
+main:has(#login-section) ~ #logout-btn,
+main:has(#login-section) ~ #community-nav-btn,
+#login-section #logout-btn, 
+#login-section #community-nav-btn {
+    display: none !important;
 }
 
-/* Skjul knappene når vi er på login-skjermen */
-#login-section ~ #logout-btn, 
-#login-section ~ #community-nav-btn,
-main:has(#login-section) #logout-btn,
-main:has(#login-section) #community-nav-btn {
-    display: none;
-}
-
-/* --- SKJEMAER & INPUT --- */
+/* --- LOGIN & REGISTER SECTION --- */
 #login-section {
     max-width: 400px;
     margin: 0 auto;
@@ -91,11 +99,48 @@ main:has(#login-section) #community-nav-btn {
 #login-section form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch; /* Lar barna styre sin egen bredde/posisjon */
     width: 100%;
 }
 
-input {
+/* Fikser Checkbox og tilhørende tekst */
+#login-section div:has(input[type="checkbox"]), 
+#login-section label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Venstrestilt! */
+    gap: 10px;
+    margin: 5px 0 15px 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+#login-section input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    cursor: pointer;
+}
+
+#login-section p {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+}
+
+#login-section a {
+    color: #1B475D;
+    font-weight: 800;
+    text-decoration: none;
+    border-bottom: 2px solid #FAD564;
+    transition: opacity 0.2s;
+}
+
+#login-section a:hover {
+    opacity: 0.7;
+}
+
+/* --- INPUT FELTER --- */
+input:not([type="checkbox"]) {
     display: block;
     width: 100%;
     box-sizing: border-box;
@@ -107,40 +152,11 @@ input {
     background-color: #FAFAFA;
     margin-bottom: 15px;
     outline: none;
-    transition: border-color 0.2s;
 }
 
 input:focus {
     border-color: #FAD564;
     background-color: #ffffff;
-}
-
-/* --- KNAPPER --- */
-button {
-    padding: 14px 24px;
-    background-color: #FAD564;
-    color: #1B475D;
-    border: none;
-    border-radius: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 0px #e5c04f;
-}
-
-button:hover {
-    background-color: #fce08a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0px #e5c04f;
-}
-
-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 0px 0px transparent;
 }
 
 /* --- GRID & KORT --- */
@@ -164,7 +180,6 @@ button:active {
 
 .collection-card strong {
     font-size: 1.1rem;
-    display: block;
     color: #1B475D;
 }
 
@@ -177,43 +192,23 @@ button:active {
     border-left: 6px solid #FAD564;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-
-.album-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 }
 
 .album-title {
     font-weight: 800;
     font-size: 1.1rem;
-    color: #1B475D;
+    display: block;
 }
 
 .album-artist {
     font-size: 0.85rem;
     opacity: 0.7;
-    margin-top: 2px;
 }
 
-/* --- HJELPEKLASSER --- */
+/* Spesialknapp for Back */
 #backBtn {
     background-color: #1B475D;
     color: white;
-    margin-bottom: 20px;
-    width: auto;
     box-shadow: 0 4px 0px #0d2a38;
-}
-
-.open-btn {
-    width: 100%;
-    margin-top: 10px;
-}
-
-footer {
-    margin-top: 40px;
-    font-size: 0.75rem;
-    opacity: 0.6;
+    margin-bottom: 20px;
 }

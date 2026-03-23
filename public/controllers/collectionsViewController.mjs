@@ -20,8 +20,14 @@ export default class CollectionsViewController {
   }
 
   render() {
-    this.rootEl.innerHTML = "";
+    this.rootEl.innerHTML = ""; // Tømmer først
+    // Tegn navigasjon først (for plassering)
     this.renderNavigation();
+
+    // Flytt hovedtittelen hit, inne i hovedvisningen
+    const titleH1 = document.createElement("h1");
+    titleH1.textContent = "Vinyl Collection Share";
+    this.rootEl.appendChild(titleH1);
 
     if (this.currentCollection) {
       this.renderDetailView();
@@ -29,15 +35,16 @@ export default class CollectionsViewController {
       this.renderListView();
     }
   }
+
   renderNavigation() {
     const nav = document.createElement("div");
     nav.innerHTML = `
-      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? "🌎 Community" : "🏠 My Collection"}</button>
+      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? "Community" : "My Collection"}</button>
       <button type="button" id="logout-btn">Logout</button>
     `;
     this.rootEl.appendChild(nav);
 
-   
+    // Her bruker vi 'nav.querySelector' for å feste funksjonene til knappene vi nettopp laget
     nav.querySelector("#logout-btn").addEventListener("click", () => {
       localStorage.clear();
       location.reload();
@@ -193,12 +200,14 @@ class CollectionCreate extends HTMLElement {
     });
   }
 }
+// Forhindrer re-definering av custom elements, som kan gi feilmelding
 if (!customElements.get("collection-create")) customElements.define("collection-create", CollectionCreate);
 
 class CollectionDelete extends HTMLElement {
   connectedCallback() {
     const id = this.getAttribute("collection-id");
-    this.innerHTML = `<button type="button" style="color: red; margin-left: 5px; background:none; border:none; box-shadow:none; font-size:0.7rem;">Delete</button>`;
+    // Standardisert styling for delete-knappen
+    this.innerHTML = `<button type="button" style="color: red; margin-left: 5px; background:none; border:none; box-shadow:none; font-size:0.7rem; cursor:pointer;">Delete</button>`;
     this.querySelector("button").addEventListener("click", () => {
       if (!id) return;
       window.dispatchEvent(new CustomEvent("collection:delete", { detail: { id } }));
