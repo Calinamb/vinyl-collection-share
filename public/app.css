@@ -11,8 +11,26 @@ body {
     min-height: 100vh;
     padding: 60px 20px;
     box-sizing: border-box;
+    position: relative; /* Viktig for å posisjonere knapper i forhold til hele siden */
 }
 
+/* 1. NAVIGASJON (Dette tvinger knappene ut i hjørnene som på bilde 1) */
+.nav-container {
+    position: absolute; /* Tar dem ut av den vanlige flyten */
+    top: 30px;
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 80px); /* Sørger for at de når helt ut til kantene */
+    pointer-events: none; /* Gjør at de ikke blokkerer for klikk andre steder */
+}
+
+.nav-container button {
+    pointer-events: auto; /* Gjør knappene klikkbare igjen */
+}
+
+/* 2. DEN HVITE BOKSEN (Sentrert og ryddig) */
 main, .container {
     background-color: #ffffff;
     padding: 40px;
@@ -22,80 +40,49 @@ main, .container {
     max-width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Midtstiller alt inni boksen */
+    margin-top: 40px; /* Gir plass til knappene øverst */
 }
 
-form, .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-/* FIKS: Treffer alle felt, inkludert det som mangler type="text" */
+/* 3. INPUTS (Korte og fine som på bilde 1) */
 .form-container input, 
 input[type="text"], 
 input[type="password"], 
-input[type="email"],
-#reg-username {
+input[type="email"] {
     width: 100%;
-    max-width: 320px; /* Dette tvinger boksen til å være kort som på bilde 2 */
+    max-width: 320px;
     padding: 14px;
     margin-bottom: 15px;
     border: 2px solid #F4F4F4;
     border-radius: 12px;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-    display: block;
 }
 
-.terms-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    margin: 5px 0 20px 0;
-}
-
-.terms-container input {
-    width: 20px !important; 
-    height: 20px !important;
-    margin: 0 !important;
-}
-
-.terms-container span {
-    font-size: 0.85rem;
-    white-space: nowrap; 
-}
-
+/* 4. KNAPPER (Riktig stil med skygge) */
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
-    padding: 14px 28px;
+    padding: 12px 24px;
     background-color: #FAD564;
     color: #1B475D;
     border: none;
-    border-radius: 14px;
+    border-radius: 12px;
     font-weight: 800;
     text-transform: uppercase;
     cursor: pointer;
     box-shadow: 0 5px 0px #e5c04f;
+    transition: all 0.1s;
 }
 
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 0px #e5c04f;
+}
+
+/* Back-knappen skal være mørkeblå */
 #back-btn, #backBtn {
     background-color: #1B475D !important;
     color: #ffffff !important;
     box-shadow: 0 5px 0px #0d2a38 !important;
-}
-
-.album-item {
-    background: #f9f9f9;
-    padding: 15px 20px;
-    margin-bottom: 10px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-left: 6px solid #FAD564;
 }
 
 header { display: none !important; }
