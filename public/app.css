@@ -9,89 +9,99 @@ body {
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
-    padding: 100px 20px;
+    padding: 120px 20px 40px 20px; /* God plass på toppen til knappene */
     box-sizing: border-box;
 }
 
-/* 1. KNAPPENE (Stil fra bilde 1) */
-button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
-    padding: 10px 25px;
-    background-color: #FAD564;
-    color: #1B475D;
-    border: 2px solid #1B475D;
-    border-radius: 8px;
-    font-weight: 800;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 2px 2px 0px #1B475D;
-    display: inline-block;
-    width: fit-content;
-}
-
-/* 2. NAVIGASJON (Flyttet ut til hjørnene) */
+/* Dette flytter knappene opp i hjørnene du tegnet */
 .nav-container {
-    position: fixed;
+    position: fixed; /* Låser dem til skjermen, ikke boksen */
     top: 30px;
     left: 0;
     right: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 40px;
+    padding: 0 40px; /* Juster denne for å treffe sirklene dine perfekt */
     box-sizing: border-box;
     z-index: 1000;
 }
 
-/* 3. DEN HVITE BOKSEN (Ren stil fra bilde 2) */
-main, .container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 35px;
-    width: 100%;
-    max-width: 550px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+/* De gule knappene (Log Out & Community) */
+.nav-container button, #loginBtn, #registerBtn, .open-btn, #col-form button, .add-vinyl-btn {
+    padding: 12px 24px;
+    background-color: #FAD564;
+    color: #1B475D;
+    border: none;
+    border-radius: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 0px #e5c04f;
+    transition: all 0.2s;
 }
 
-/* 4. LOGIN/REGISTER FIX (Sørger for at ting står under hverandre) */
-#login-form, #register-form, .form-group {
+button:hover { transform: translateY(-2px); background-color: #fce08a; }
+
+/* Den hvite boksen */
+main {
+    background-color: #ffffff;
+    padding: 50px 40px;
+    border-radius: 32px;
+    box-shadow: 0 15px 35px rgba(27, 71, 93, 0.1);
+    width: 100%;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    position: relative;
+}
+
+/* Tilbake-knappen (Mørkeblå som i skissen) */
+#backBtn, #back-btn {
+    background-color: #1B475D !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 0px #0d2a38 !important;
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+/* Fix for skjema og inputs */
+.form-container, #col-form, #album-form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 input {
     width: 100%;
+    max-width: 450px;
     padding: 14px;
+    margin-bottom: 12px;
     border: 2px solid #F0F0F0;
     border-radius: 12px;
     box-sizing: border-box;
-    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* 5. COMMUNITY FIX (Avlange rader under hverandre) */
-.collection-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.collection-card {
-    background: #fdfdfd;
-    padding: 15px 20px;
-    border-radius: 15px;
-    border: 1px solid #eee;
+/* Album-listen nederst */
+.album-list { width: 100%; padding: 0; list-style: none; }
+.album-item {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    border-left: 6px solid #FAD564;
 }
 
-/* Tilbake-knapp (Mørk blå) */
-#backBtn, #back-btn, .back-button {
-    background-color: #1B475D !important;
-    color: #ffffff !important;
-    border-color: #0d2a38;
-    box-shadow: 2px 2px 0px #0d2a38;
+.delete-btn {
+    background: none !important;
+    box-shadow: none !important;
+    color: #ff4444 !important;
+    font-size: 0.8rem !important;
+    margin-left: 10px;
 }
