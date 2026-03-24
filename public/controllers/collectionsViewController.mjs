@@ -96,8 +96,8 @@ export default class CollectionsViewController {
       <button type="button" id="backBtn">← Back</button>
       <h2>${escapeHtml(this.currentCollection.title)}</h2>
       
-      ${isOwner ? `<album-add-form collection-id="${this.currentCollection.id}"></album-add-form>` : "<p style='text-align:center;'>Read-only</p>"}
-
+     
+      ${isOwner ? `<album-add-form collection-id="${this.currentCollection.id}"></album-add-form>` : ""}
       <h3 style="margin-top:30px;">Albums</h3>
       <ul id="album-list-container" class="album-list">
         <p>Loading albums...</p>

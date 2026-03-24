@@ -14,7 +14,7 @@ body {
     position: relative;
 }
 
-
+/* 1. NAVIGASJON (Knapper i hjørnene) */
 .nav-container {
     position: absolute;
     top: 30px;
@@ -25,14 +25,14 @@ body {
     justify-content: space-between;
     padding: 0 40px;
     box-sizing: border-box;
-    pointer-events: none; 
+    pointer-events: none; /* Hindrer at containeren blokkerer klikk bak */
 }
 
 .nav-container button, .nav-container a {
-    pointer-events: auto; 
+    pointer-events: auto; /* Gjør selve knappene klikkbare */
 }
 
-
+/* 2. DEN HVITE BOKSEN */
 main, .container {
     background-color: #ffffff;
     padding: 40px;
@@ -45,7 +45,7 @@ main, .container {
     align-items: center; 
 }
 
-
+/* 3. RUTENETT FOR SAMLINGER (Community-siden) */
 .collection-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -53,19 +53,53 @@ main, .container {
     width: 100%;
     margin-top: 20px;
 }
+/* RUTENETTET (Selve containeren som holder boksene) */
+.collection-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
 
+/* SELVE BOKSENE (Det du har tegnet ring rundt) */
 .collection-card {
-    background: #fdfdfd;
-    padding: 25px;
+    background: #ffffff;
+    padding: 30px 20px; /* Gir den runde, luftige følelsen */
     border-radius: 25px;
     border: 2px solid #F0F0F0;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    gap: 10px;
+    align-items: center; /* Sentrerer ikonet */
+    justify-content: center;
+    text-align: center;  /* Sentrerer teksten */
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
+/* Ikonet (Mappen eller Vinylen) */
+.collection-card .icon {
+    font-size: 45px; /* Gjør ikonet stort og tydelig */
+    margin-bottom: 12px;
+    display: block;
+}
 
+/* Navnet på samlingen (Fet skrift) */
+.collection-card strong {
+    font-size: 1.1rem;
+    color: #1B475D;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Eier-navnet (Tynnere skrift under) */
+.collection-card span {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* 4. LOG IN / REGISTER SKJEMA (Smalere inni den brede boksen) */
 form, .form-container {
     width: 100%;
     max-width: 400px; 
@@ -86,7 +120,7 @@ input {
     text-align: center;
 }
 
-
+/* 5. TERMS OF SERVICE (Vannrett linje inni boksen) */
 .terms-container {
     display: flex !important;
     flex-direction: row !important;
@@ -103,59 +137,7 @@ input {
     margin: 0 !important;
 }
 
-/* Rutenettet som holder alle boksene */
-.collection-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-
-.collection-card {
-    background: #ffffff;
-    padding: 30px 20px; 
-    border-radius: 25px;
-    border: 2px solid #F0F0F0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;  
-    transition: all 0.2s ease;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-}
-
-.collection-card:hover {
-    transform: translateY(-5px);
-    border-color: #FAD564;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-}
-
-
-.collection-card .icon {
-    font-size: 40px;
-    margin-bottom: 15px;
-    display: block;
-}
-
-
-.collection-card strong {
-    font-size: 1.1rem;
-    color: #1B475D;
-    display: block;
-    margin-bottom: 5px;
-}
-
-
-.collection-card span {
-    font-size: 0.85rem;
-    color: #666;
-    font-weight: 400;
-}
-
+/* 6. JURIDISKE LENKER (Under den hvite boksen) */
 footer, .legal-links {
     margin-top: 25px;
     display: flex;
@@ -170,6 +152,7 @@ footer a, .legal-links a {
     font-weight: 600;
 }
 
+/* 7. KNAPPER (Gule/Blå med skygge) */
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     padding: 12px 28px;
     background-color: #FAD564;
