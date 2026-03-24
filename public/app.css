@@ -9,11 +9,11 @@ body {
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
-    padding-top: 120px; /* Gir plass til de flytende knappene dine */
+    padding-top: 120px; 
     box-sizing: border-box;
 }
 
-/* --- NAVIGASJON (Dette treffer sirklene dine) --- */
+/* Navigasjon i hjørnene (Community & Log Out) */
 .nav-container {
     position: fixed;
     top: 30px;
@@ -22,13 +22,13 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 60px; /* Juster for å treffe sirklene dine perfekt */
+    padding: 0 40px;
     box-sizing: border-box;
     z-index: 9999;
 }
 
-/* Felles stil for de gule knappene dine */
-button, .open-btn, .nav-container button, #loginBtn, #registerBtn, .add-vinyl-btn {
+/* Gule knapper */
+button, .open-btn, .nav-container button, #loginBtn, #registerBtn, #col-form button, .add-vinyl-btn {
     padding: 12px 24px;
     background-color: #FAD564;
     color: #1B475D;
@@ -41,52 +41,71 @@ button, .open-btn, .nav-container button, #loginBtn, #registerBtn, .add-vinyl-bt
     transition: all 0.2s ease;
 }
 
-button:hover {
-    background-color: #fce08a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0px #e5c04f;
-}
+button:hover { transform: translateY(-2px); background-color: #fce08a; }
 
-/* --- DEN HVITE BOKSEN --- */
+/* Den hvite boksen */
 main {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 32px;
     box-shadow: 0 15px 35px rgba(27, 71, 93, 0.1);
-    width: 100%;
-    max-width: 600px;
+    width: 90%;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
-/* Back-knappen (Mørkeblå som i skissen din) */
+/* Fix for at alt inni boksen skal se bra ut */
+section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+h2 { font-weight: 800; margin-bottom: 25px; text-align: left; }
+
+/* RUTENETTET (Dette fikser det som ser rart ut i Community) */
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Lager kolonner automatisk */
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Selve kortene til hver samling */
+.collection-card {
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Sentrerer innhold inni kortet */
+    gap: 10px;
+    text-align: center;
+}
+
+/* Back-knappen (Mørkeblå) */
 #backBtn, #back-btn {
     background-color: #1B475D !important;
     color: #ffffff !important;
     box-shadow: 0 4px 0px #0d2a38 !important;
     width: fit-content;
-    margin-bottom: 20px;
 }
 
-/* --- RYDDING AV DET SOM SÅ "RÆVA" UT --- */
-/* Fjerner overflødige titler og spøkelsesknapper */
-header, body > h1 { display: none !important; }
-
-h2 { font-weight: 800; text-align: left; width: 100%; margin: 10px 0; }
-
+/* Input-feltene */
 input {
     width: 100%;
+    max-width: 500px;
     padding: 14px;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     border: 2px solid #F0F0F0;
     border-radius: 12px;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #fcfcfc;
 }
 
-/* Album-visning (Som på det pene bildet ditt) */
+/* Album-rader (Gul stripe på siden) */
 .album-item {
     background: #f9f9f9;
     padding: 15px;
@@ -94,8 +113,7 @@ input {
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-left: 6px solid #FAD564; /* Den gule stripen på siden */
+    border-left: 6px solid #FAD564;
 }
 
 .delete-btn {
@@ -104,5 +122,4 @@ input {
     color: #ff4444 !important;
     font-size: 0.8rem !important;
     text-decoration: underline;
-    padding: 0;
 }
