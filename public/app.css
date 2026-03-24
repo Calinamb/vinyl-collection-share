@@ -13,31 +13,31 @@ body {
     box-sizing: border-box;
 }
 
-/* Den hvite boksen */
+/* Hvit boks - Ryddig og sentrert som bilde 3/4 */
 main, .container {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 40px;
     box-shadow: 0 10px 30px rgba(27, 71, 93, 0.05);
     width: 100%;
-    max-width: 550px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Midtstiller alt inni boksen */
+    align-items: center;
 }
 
-/* Skjemaet (Viktig for bilde 2-looken) */
+/* Skjemaer */
 form, .form-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Midtstiller alle inputs og knapper */
+    align-items: center;
     width: 100%;
 }
 
-/* Inputs (Dette fikser "Username"-boksen fra bilde 1 til bilde 2) */
+/* Inndatafelt - Korte og ryddige */
 input[type="text"], input[type="password"], input[type="email"] {
     width: 100%;
-    max-width: 350px; /* Gjør dem kortere som i bilde 2 */
+    max-width: 320px;
     padding: 14px;
     margin-bottom: 15px;
     border: 2px solid #F4F4F4;
@@ -46,24 +46,28 @@ input[type="text"], input[type="password"], input[type="email"] {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Terms of Service (Midtstilt på én linje) */
+/* FIX: Terms of Service (Slik at det ikke ser "dumt" ut som på bildet) */
 .terms-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     width: 100%;
-    max-width: 350px;
-    margin-bottom: 20px;
+    margin: 5px 0 20px 0;
 }
 
-.terms-container input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin: 0;
+.terms-container input {
+    width: 20px !important; /* Tvinger sjekkboksen til å være liten */
+    height: 20px !important;
+    margin: 0 !important;
 }
 
-/* Gule knapper med solid skygge */
+.terms-container span {
+    font-size: 0.85rem;
+    white-space: nowrap; /* Holder teksten på én linje */
+}
+
+/* KNAPPENE (Slik du vil ha dem - fra bilde 2/14) */
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     padding: 14px 28px;
     background-color: #FAD564;
@@ -74,28 +78,24 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     text-transform: uppercase;
     cursor: pointer;
     box-shadow: 0 5px 0px #e5c04f;
-    transition: all 0.1s;
 }
 
-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 3px 0px #e5c04f;
-}
-
-/* Mørkeblå knapper (Back) */
 #back-btn, #backBtn {
     background-color: #1B475D !important;
     color: #ffffff !important;
     box-shadow: 0 5px 0px #0d2a38 !important;
 }
 
-/* Navigasjon i hjørnene (Community/Logout) */
-.nav-container {
-    width: 100%;
-    max-width: 800px;
+/* Album rader (Bilde 5 stil) */
+.album-item {
+    background: #f9f9f9;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    width: 100%;
+    border-left: 6px solid #FAD564;
 }
 
 header { display: none !important; }
