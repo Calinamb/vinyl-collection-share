@@ -7,14 +7,14 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column; 
-    align-items: center; /* Midtstiller boksen horisontalt */
+    align-items: center;
     min-height: 100vh;
     padding: 100px 20px 40px 20px;
     box-sizing: border-box;
     position: relative;
 }
 
-/* 1. NAVIGASJON (Knappene i hjørnene) */
+
 .nav-container {
     position: absolute;
     top: 30px;
@@ -27,7 +27,7 @@ body {
     box-sizing: border-box;
 }
 
-/* 2. DEN HVITE BOKSEN (Sentrert innhold) */
+
 main, .container {
     background-color: #ffffff;
     padding: 40px;
@@ -37,16 +37,16 @@ main, .container {
     max-width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Dette midtstiller alt inni boksen (overskrift, felt, knapper) */
+    align-items: center; 
     text-align: center;
 }
 
-/* 3. SKJEMA-ELEMENTER (Sentrert og begrenset bredde) */
+
 form, .form-container {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Midtstiller innholdet i skjemaet */
+    align-items: center; 
 }
 
 input {
@@ -58,10 +58,10 @@ input {
     border-radius: 12px;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-    text-align: center; /* Gjør teksten inni boksen sentrert hvis du vil ha det som bilde 2 */
+    text-align: center; 
 }
 
-/* 4. TERMS UNDER BOKSEN (Flyttet ut) */
+
 footer, .legal-links {
     margin-top: 20px;
     display: flex;
@@ -77,7 +77,7 @@ footer a, .legal-links a {
     opacity: 0.7;
 }
 
-/* 5. KNAPPER (Gule med skygge) */
+
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     padding: 12px 28px;
     background-color: #FAD564;
@@ -97,11 +97,28 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     box-shadow: 0 5px 0px #0d2a38 !important;
 }
 
-/* Terms of Service sjekkboks-rad inni boksen */
+
 .terms-container {
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important; 
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin: 5px 0 20px 0;
+    width: 100%;
+    max-width: 320px;
+    margin: 10px 0 25px 0;
+}
+
+
+.terms-container input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+    cursor: pointer;
+}
+
+
+.terms-container span {
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
