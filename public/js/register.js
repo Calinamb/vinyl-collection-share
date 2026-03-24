@@ -4,6 +4,15 @@ const consentInput = document.getElementById("reg-consent");
 const registerBtn = document.getElementById("registerBtn");
 const message = document.getElementById("reg-message");
 
+console.log("Register scriptet er lastet!");
+
+const registerBtn = document.getElementById("registerBtn");
+if (registerBtn) {
+    console.log("Fant knappen!");
+} else {
+    console.error("Fant IKKE knappen!");
+}
+
 registerBtn.addEventListener("click", async (event) => {
    
     const username = usernameInput.value.trim();
