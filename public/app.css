@@ -9,99 +9,94 @@ body {
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
-    padding: 120px 20px 40px 20px; /* God plass på toppen til knappene */
+    padding: 60px 20px;
     box-sizing: border-box;
 }
 
-/* Dette flytter knappene opp i hjørnene du tegnet */
-.nav-container {
-    position: fixed; /* Låser dem til skjermen, ikke boksen */
-    top: 30px;
-    left: 0;
-    right: 0;
+main, .container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(27, 71, 93, 0.05);
     width: 100%;
+    max-width: 600px;
     display: flex;
-    justify-content: space-between;
-    padding: 0 40px; /* Juster denne for å treffe sirklene dine perfekt */
-    box-sizing: border-box;
-    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* De gule knappene (Log Out & Community) */
-.nav-container button, #loginBtn, #registerBtn, .open-btn, #col-form button, .add-vinyl-btn {
-    padding: 12px 24px;
+/* Gule knapper med solid skygge */
+button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn, #create-col-btn {
+    padding: 14px 28px;
     background-color: #FAD564;
     color: #1B475D;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 4px 0px #e5c04f;
-    transition: all 0.2s;
+    box-shadow: 0 5px 0px #e5c04f;
+    transition: all 0.1s ease;
+    margin: 10px 0;
 }
 
-button:hover { transform: translateY(-2px); background-color: #fce08a; }
-
-/* Den hvite boksen */
-main {
-    background-color: #ffffff;
-    padding: 50px 40px;
-    border-radius: 32px;
-    box-shadow: 0 15px 35px rgba(27, 71, 93, 0.1);
-    width: 100%;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0px #e5c04f;
 }
 
-/* Tilbake-knappen (Mørkeblå som i skissen) */
-#backBtn, #back-btn {
+/* Mørkeblå knapper (Back) */
+#back-btn, #backBtn, .back-button {
     background-color: #1B475D !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 0px #0d2a38 !important;
-    align-self: flex-start;
-    margin-bottom: 20px;
+    box-shadow: 0 5px 0px #0d2a38 !important;
 }
 
-/* Fix for skjema og inputs */
-.form-container, #col-form, #album-form {
+/* Input-felter */
+input[type="text"], input[type="password"] {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-input {
-    width: 100%;
-    max-width: 450px;
+    max-width: 400px;
     padding: 14px;
-    margin-bottom: 12px;
-    border: 2px solid #F0F0F0;
+    margin-bottom: 15px;
+    border: 2px solid #F4F4F4;
     border-radius: 12px;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
 }
 
-/* Album-listen nederst */
-.album-list { width: 100%; padding: 0; list-style: none; }
+/* Fikser sjekkboksen og teksten (Bilde 15) */
+.terms-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin: 5px 0 20px 0;
+}
+
+.terms-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.terms-container span {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* Album rader */
 .album-item {
     background: #f9f9f9;
-    padding: 15px;
-    border-radius: 12px;
+    padding: 15px 20px;
     margin-bottom: 10px;
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
+    width: 100%;
     border-left: 6px solid #FAD564;
+    box-sizing: border-box;
 }
 
-.delete-btn {
-    background: none !important;
-    box-shadow: none !important;
-    color: #ff4444 !important;
-    font-size: 0.8rem !important;
-    margin-left: 10px;
-}
+header { display: none !important; }
