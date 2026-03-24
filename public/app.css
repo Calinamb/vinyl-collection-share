@@ -25,7 +25,6 @@ main, .container {
     align-items: center;
 }
 
-/* Gule knapper med solid skygge */
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn, #create-col-btn {
     padding: 14px 28px;
     background-color: #FAD564;
@@ -46,7 +45,6 @@ button:active {
     box-shadow: 0 2px 0px #e5c04f;
 }
 
-/* Mørkeblå knapper (Back) */
 #back-btn, #backBtn, .back-button {
     background-color: #1B475D !important;
     color: #ffffff !important;
@@ -64,14 +62,13 @@ input[type="text"], input[type="password"] {
     box-sizing: border-box;
 }
 
-/* Fikser sjekkboksen og teksten (Bilde 15) */
 .terms-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    margin: 5px 0 20px 0;
+    align-items: center;    
+    justify-content: center; 
+    gap: 10px;              
+    margin-bottom: 25px;    
+    width: 100%;             
 }
 
 .terms-container input[type="checkbox"] {
@@ -86,7 +83,14 @@ input[type="text"], input[type="password"] {
     font-weight: 400;
 }
 
-/* Album rader */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+}
+
+
 .album-item {
     background: #f9f9f9;
     padding: 15px 20px;
