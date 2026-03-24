@@ -13,7 +13,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Hvit boks - Ryddig og sentrert som bilde 3/4 */
 main, .container {
     background-color: #ffffff;
     padding: 40px;
@@ -26,7 +25,6 @@ main, .container {
     align-items: center;
 }
 
-/* Skjemaer */
 form, .form-container {
     display: flex;
     flex-direction: column;
@@ -34,19 +32,23 @@ form, .form-container {
     width: 100%;
 }
 
-/* Inndatafelt - Korte og ryddige */
-input[type="text"], input[type="password"], input[type="email"] {
+/* FIKS: Treffer alle felt, inkludert det som mangler type="text" */
+.form-container input, 
+input[type="text"], 
+input[type="password"], 
+input[type="email"],
+#reg-username {
     width: 100%;
-    max-width: 320px;
+    max-width: 320px; /* Dette tvinger boksen til å være kort som på bilde 2 */
     padding: 14px;
     margin-bottom: 15px;
     border: 2px solid #F4F4F4;
     border-radius: 12px;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    display: block;
 }
 
-/* FIX: Terms of Service (Slik at det ikke ser "dumt" ut som på bildet) */
 .terms-container {
     display: flex;
     align-items: center;
@@ -57,17 +59,16 @@ input[type="text"], input[type="password"], input[type="email"] {
 }
 
 .terms-container input {
-    width: 20px !important; /* Tvinger sjekkboksen til å være liten */
+    width: 20px !important; 
     height: 20px !important;
     margin: 0 !important;
 }
 
 .terms-container span {
     font-size: 0.85rem;
-    white-space: nowrap; /* Holder teksten på én linje */
+    white-space: nowrap; 
 }
 
-/* KNAPPENE (Slik du vil ha dem - fra bilde 2/14) */
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     padding: 14px 28px;
     background-color: #FAD564;
@@ -86,7 +87,6 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     box-shadow: 0 5px 0px #0d2a38 !important;
 }
 
-/* Album rader (Bilde 5 stil) */
 .album-item {
     background: #f9f9f9;
     padding: 15px 20px;
