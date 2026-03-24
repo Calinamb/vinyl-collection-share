@@ -1,9 +1,3 @@
-const usernameInput = document.getElementById("reg-username");
-const passwordInput = document.getElementById("reg-password");
-const consentInput = document.getElementById("reg-consent");
-const registerBtn = document.getElementById("registerBtn");
-const message = document.getElementById("reg-message");
-
 console.log("Register scriptet er lastet!");
 
 const registerBtn = document.getElementById("registerBtn");
@@ -12,6 +6,13 @@ if (registerBtn) {
 } else {
     console.error("Fant IKKE knappen!");
 }
+
+const usernameInput = document.getElementById("reg-username");
+const passwordInput = document.getElementById("reg-password");
+const consentInput = document.getElementById("reg-consent");
+
+const message = document.getElementById("reg-message");
+
 
 registerBtn.addEventListener("click", async (event) => {
    
