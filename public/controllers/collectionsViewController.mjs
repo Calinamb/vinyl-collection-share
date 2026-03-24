@@ -5,7 +5,7 @@ export default class CollectionsViewController {
     this.rootEl = rootEl;
     this.collections = collections;
     this.currentCollection = null;
-    this.mode = "my-vinyls"; // Standard modus
+    this.mode = "my-vinyls";
 
     window.addEventListener("collection:create", (e) => this.handleCreate(e.detail));
     window.addEventListener("collection:delete", (e) => this.handleDelete(e.detail));
@@ -20,14 +20,10 @@ export default class CollectionsViewController {
   }
 
   render() {
-    this.rootEl.innerHTML = ""; // Tømmer først
-    // Tegn navigasjon først (for plassering)
+    this.rootEl.innerHTML = ""; 
+    
+    // Vi tegner kun navigasjonen her, IKKE en ny H1-tittel
     this.renderNavigation();
-
-    // Flytt hovedtittelen hit, inne i hovedvisningen
-    const titleH1 = document.createElement("h1");
-    titleH1.textContent = "Vinyl Collection Share";
-    this.rootEl.appendChild(titleH1);
 
     if (this.currentCollection) {
       this.renderDetailView();
@@ -38,13 +34,13 @@ export default class CollectionsViewController {
 
   renderNavigation() {
     const nav = document.createElement("div");
+    nav.className = "nav-container";
     nav.innerHTML = `
-      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? "Community" : "My Collection"}</button>
-      <button type="button" id="logout-btn">Logout</button>
+      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? "🌐 Community" : "🏠 My Collection"}</button>
+      <button type="button" id="logout-btn">Log Out</button>
     `;
     this.rootEl.appendChild(nav);
 
-    // Her bruker vi 'nav.querySelector' for å feste funksjonene til knappene vi nettopp laget
     nav.querySelector("#logout-btn").addEventListener("click", () => {
       localStorage.clear();
       location.reload();
@@ -61,9 +57,10 @@ export default class CollectionsViewController {
   renderListView() {
     const currentUserId = localStorage.getItem("userId");
     const section = document.createElement("section");
+    section.style.width = "100%";
     
     section.innerHTML = `
-      <h2>${this.mode === "my-vinyls" ? "My Vinyl Collections" : "Vinyl Community"}</h2>
+      <h2 style="margin-top:20px;">${this.mode === "my-vinyls" ? "My Vinyls" : "Vinyl Community"}</h2>
       ${this.mode === "my-vinyls" ? `<collection-create></collection-create>` : ""}
       
       <div class="collection-grid">
@@ -72,12 +69,10 @@ export default class CollectionsViewController {
           return `
             <div class="collection-card">
               <strong>${escapeHtml(c.title)}</strong>
-              ${this.mode === "community" ? `<p style="font-size:0.8rem; margin:0;">by ${escapeHtml(c.username)}</p>` : ""}
-              <p style="opacity:.7">(${c.album_count || 0} albums)</p>
-              <div style="margin-top:10px">
-                <button type="button" class="open-btn" data-id="${c.id}">Open</button>
-                ${(isOwner && this.mode === "my-vinyls") ? `<collection-delete collection-id="${c.id}"></collection-delete>` : ''}
-              </div>
+              ${this.mode === "community" ? `<p style="font-size:0.8rem; margin:5px 0;">by ${escapeHtml(c.username)}</p>` : ""}
+              <p style="opacity:.7; font-size:0.8rem;">(${c.album_count || 0} albums)</p>
+              <button type="button" class="open-btn" data-id="${c.id}">Open</button>
+              ${(isOwner && this.mode === "my-vinyls") ? `<collection-delete collection-id="${c.id}"></collection-delete>` : ''}
             </div>
           `;
         }).join("")}
@@ -98,14 +93,15 @@ export default class CollectionsViewController {
     const isOwner = String(this.currentCollection.user_id) === String(currentUserId);
     
     const section = document.createElement("section");
+    section.style.width = "100%";
     section.innerHTML = `
       <button type="button" id="backBtn">← Back</button>
       <h2>${escapeHtml(this.currentCollection.title)}</h2>
       
-      ${isOwner ? `<album-add-form collection-id="${this.currentCollection.id}"></album-add-form>` : "<p>Viewing community collection (Read-only)</p>"}
+      ${isOwner ? `<album-add-form collection-id="${this.currentCollection.id}"></album-add-form>` : "<p style='text-align:center;'>Viewing community collection (Read-only)</p>"}
 
-      <h3>Albums</h3>
-      <ul id="album-list-container">
+      <h3 style="margin-top:30px;">Albums</h3>
+      <ul id="album-list-container" class="album-list">
         <p>Loading albums...</p>
       </ul>
     `;
@@ -117,11 +113,6 @@ export default class CollectionsViewController {
     };
 
     this.loadAlbumsForCollection(this.currentCollection.id);
-  }
-
-  handleOpen({ id }) {
-    this.currentCollection = this.collections.find(c => String(c.id) === String(id));
-    this.render();
   }
 
   async handleAddAlbum({ collectionId, artist, title }) {
@@ -167,10 +158,8 @@ export default class CollectionsViewController {
 
       listContainer.innerHTML = albums.map(a => `
         <li class="album-item">
-          <div class="album-info">
-            <span class="album-title">${escapeHtml(a.title)}</span>
-            <span class="album-artist">by ${escapeHtml(a.artist)}</span>
-          </div>
+            <strong>${escapeHtml(a.title)}</strong>
+            <span>${escapeHtml(a.artist)}</span>
         </li>
       `).join("");
     } catch (err) {
@@ -179,11 +168,10 @@ export default class CollectionsViewController {
   }
 }
 
-// Custom Elements (Beholdes som de er, de blir bare tegnet eller ikke tegnet basert på render-logikken)
 class CollectionCreate extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div style="margin-bottom: 20px;">
+      <div class="collection-create-container">
         <form id="col-form">
           <input name="title" placeholder="New Collection Title" required />
           <button type="submit">Create Collection</button>
@@ -200,14 +188,12 @@ class CollectionCreate extends HTMLElement {
     });
   }
 }
-// Forhindrer re-definering av custom elements, som kan gi feilmelding
 if (!customElements.get("collection-create")) customElements.define("collection-create", CollectionCreate);
 
 class CollectionDelete extends HTMLElement {
   connectedCallback() {
     const id = this.getAttribute("collection-id");
-    // Standardisert styling for delete-knappen
-    this.innerHTML = `<button type="button" style="color: red; margin-left: 5px; background:none; border:none; box-shadow:none; font-size:0.7rem; cursor:pointer;">Delete</button>`;
+    this.innerHTML = `<button type="button" class="delete-btn">Delete</button>`;
     this.querySelector("button").addEventListener("click", () => {
       if (!id) return;
       window.dispatchEvent(new CustomEvent("collection:delete", { detail: { id } }));
@@ -220,7 +206,7 @@ class AlbumAddForm extends HTMLElement {
   connectedCallback() {
     const colId = this.getAttribute("collection-id");
     this.innerHTML = `
-      <form id="album-form" style="background: #FAFAFA; border: 2px solid #F0F0F0; padding: 15px; border-radius: 12px; margin: 15px 0;">
+      <form id="album-form" class="add-album-form">
         <input name="title" placeholder="Album Title" required />
         <input name="artist" placeholder="Artist Name" required />
         <button type="submit">Add Vinyl</button>

@@ -92,3 +92,51 @@ p {
     min-height: 20px;
     font-weight: 600;
 }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* To kolonner */
+    gap: 15px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.collection-card {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.album-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.album-item {
+    background: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-btn {
+    background: none;
+    box-shadow: none;
+    color: #ff4444;
+    font-size: 0.7rem;
+    padding: 5px;
+    margin-top: 5px;
+}
