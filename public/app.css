@@ -9,10 +9,26 @@ body {
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
-    padding-top: 100px;
+    padding: 100px 20px;
+    box-sizing: border-box;
 }
 
-/* Navigasjon i hjørnene */
+/* 1. KNAPPENE (Stil fra bilde 1) */
+button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
+    padding: 10px 25px;
+    background-color: #FAD564;
+    color: #1B475D;
+    border: 2px solid #1B475D;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #1B475D;
+    display: inline-block;
+    width: fit-content;
+}
+
+/* 2. NAVIGASJON (Flyttet ut til hjørnene) */
 .nav-container {
     position: fixed;
     top: 30px;
@@ -22,61 +38,58 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 0 40px;
-    z-index: 9999;
+    box-sizing: border-box;
+    z-index: 1000;
 }
 
-/* Knappene fra Bilde 1 (Gule med skygge) */
-button, .open-btn, .nav-container button, #loginBtn, #registerBtn, .add-vinyl-btn {
-    padding: 10px 25px;
-    background-color: #FAD564;
-    color: #1B475D;
-    border: 2px solid #1B475D; /* Mørk kant som i bilde 1 */
-    border-radius: 8px;
-    font-weight: 800;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 2px 2px 0px #1B475D; /* Skygge-effekten fra bilde 1 */
-}
-
-button:active {
-    box-shadow: none;
-    transform: translate(2px, 2px);
-}
-
-/* Den hvite boksen fra Bilde 2 */
-main {
+/* 3. DEN HVITE BOKSEN (Ren stil fra bilde 2) */
+main, .container {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 35px;
-    width: 90%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 550px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
-/* Community-visning (Mindre og avlange samlinger under hverandre) */
-.collection-grid {
+/* 4. LOGIN/REGISTER FIX (Sørger for at ting står under hverandre) */
+#login-form, #register-form, .form-group {
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 100%;
 }
 
+input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #F0F0F0;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+/* 5. COMMUNITY FIX (Avlange rader under hverandre) */
+.collection-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .collection-card {
+    background: #fdfdfd;
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 1px solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background: #f9f9f9;
-    border-radius: 15px;
-    border: 1px solid #eee;
 }
 
-.collection-card strong { font-size: 1rem; }
-.collection-card p { margin: 0; font-size: 0.8rem; opacity: 0.7; }
-
-/* Back-knappen (Mørk blå som i bilde 2) */
-#backBtn, #back-btn {
+/* Tilbake-knapp (Mørk blå) */
+#backBtn, #back-btn, .back-button {
     background-color: #1B475D !important;
     color: #ffffff !important;
     border-color: #0d2a38;
