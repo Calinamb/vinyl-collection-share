@@ -7,14 +7,14 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column; 
-    align-items: center;
+    align-items: center; 
     min-height: 100vh;
     padding: 100px 20px 40px 20px;
     box-sizing: border-box;
     position: relative;
 }
 
-
+/* 1. NAVIGASJON (Knapper i hjørnene) */
 .nav-container {
     position: absolute;
     top: 30px;
@@ -25,28 +25,54 @@ body {
     justify-content: space-between;
     padding: 0 40px;
     box-sizing: border-box;
+    pointer-events: none; /* Hindrer at containeren blokkerer klikk bak */
 }
 
+.nav-container button, .nav-container a {
+    pointer-events: auto; /* Gjør selve knappene klikkbare */
+}
 
+/* 2. DEN HVITE BOKSEN */
 main, .container {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 40px;
     box-shadow: 0 10px 30px rgba(27, 71, 93, 0.05);
     width: 100%;
-    max-width: 500px;
+    max-width: 800px; /* Bred nok for rutenettet */
     display: flex;
     flex-direction: column;
     align-items: center; 
-    text-align: center;
 }
 
-
-form, .form-container {
+/* 3. RUTENETT FOR SAMLINGER (Community-siden) */
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
     width: 100%;
+    margin-top: 20px;
+}
+
+.collection-card {
+    background: #fdfdfd;
+    padding: 25px;
+    border-radius: 25px;
+    border: 2px solid #F0F0F0;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center; /* Sentrerer innhold i hver rute */
+    text-align: center;
+    gap: 10px;
+}
+
+/* 4. LOG IN / REGISTER SKJEMA (Smalere inni den brede boksen) */
+form, .form-container {
+    width: 100%;
+    max-width: 400px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input {
@@ -58,37 +84,52 @@ input {
     border-radius: 12px;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-    text-align: center; 
+    text-align: center;
 }
 
+/* 5. TERMS OF SERVICE (Vannrett linje inni boksen) */
+.terms-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin: 10px 0 25px 0;
+}
 
+.terms-container input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+}
+
+/* 6. JURIDISKE LENKER (Under den hvite boksen) */
 footer, .legal-links {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
     gap: 15px;
     justify-content: center;
-    width: 100%;
 }
 
 footer a, .legal-links a {
     color: #1B475D;
     text-decoration: none;
-    font-size: 0.8rem;
-    opacity: 0.7;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
-
+/* 7. KNAPPER (Gule/Blå med skygge) */
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     padding: 12px 28px;
     background-color: #FAD564;
     color: #1B475D;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     font-weight: 800;
     text-transform: uppercase;
     cursor: pointer;
     box-shadow: 0 5px 0px #e5c04f;
-    margin-top: 10px;
 }
 
 #back-btn, #backBtn {
@@ -97,28 +138,4 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     box-shadow: 0 5px 0px #0d2a38 !important;
 }
 
-
-.terms-container {
-    display: flex !important;
-    flex-direction: row !important; 
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    max-width: 320px;
-    margin: 10px 0 25px 0;
-}
-
-
-.terms-container input[type="checkbox"] {
-    width: 18px !important;
-    height: 18px !important;
-    margin: 0 !important;
-    cursor: pointer;
-}
-
-
-.terms-container span {
-    font-size: 0.9rem;
-    white-space: nowrap;
-}
+header { display: none !important; }
