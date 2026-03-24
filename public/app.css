@@ -14,7 +14,6 @@ body {
     position: relative;
 }
 
-/* 1. NAVIGASJON (Knapper i hjørnene) */
 .nav-container {
     position: absolute;
     top: 30px;
@@ -25,67 +24,79 @@ body {
     justify-content: space-between;
     padding: 0 40px;
     box-sizing: border-box;
-    pointer-events: none; /* Hindrer at containeren blokkerer klikk bak */
+    pointer-events: none; 
 }
 
 .nav-container button, .nav-container a {
-    pointer-events: auto; /* Gjør selve knappene klikkbare */
+    pointer-events: auto; 
 }
 
-/* 2. DEN HVITE BOKSEN */
 main, .container {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 40px;
     box-shadow: 0 10px 30px rgba(27, 71, 93, 0.05);
     width: 100%;
-    max-width: 800px; /* Bred nok for rutenettet */
+    max-width: 800px; 
     display: flex;
     flex-direction: column;
     align-items: center; 
 }
 
-/* 3. RUTENETT FOR SAMLINGER (Community-siden) */
+.container h1, .container h2, .collection-header {
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+}
+
+.collection-controls, .create-collection-form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px !important;
+    width: 100% !important;
+    margin-bottom: 30px !important;
+}
+
 .collection-grid {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     width: 100%;
     margin-top: 20px;
 }
-/* RUTENETTET (Selve containeren som holder boksene) */
-.collection-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
-    width: 100%;
-    margin-top: 20px;
-}
 
-/* SELVE BOKSENE (Det du har tegnet ring rundt) */
 .collection-card {
     background: #ffffff;
-    padding: 30px 20px; /* Gir den runde, luftige følelsen */
+    padding: 30px 20px; 
     border-radius: 25px;
     border: 2px solid #F0F0F0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Sentrerer ikonet */
+    align-items: center; 
     justify-content: center;
-    text-align: center;  /* Sentrerer teksten */
+    text-align: center;  
     transition: transform 0.2s ease;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
-/* Ikonet (Mappen eller Vinylen) */
+.collection-card button, .collection-card .open-btn, .collection-card .delete-btn {
+    margin-bottom: 10px !important; 
+    width: 100% !important;
+    max-width: 140px !important;
+}
+
+.collection-card button:last-child {
+    margin-bottom: 0 !important;
+}
+
 .collection-card .icon {
-    font-size: 45px; /* Gjør ikonet stort og tydelig */
+    font-size: 45px; 
     margin-bottom: 12px;
     display: block;
 }
 
-/* Navnet på samlingen (Fet skrift) */
 .collection-card strong {
     font-size: 1.1rem;
     color: #1B475D;
@@ -93,13 +104,11 @@ main, .container {
     margin-bottom: 4px;
 }
 
-/* Eier-navnet (Tynnere skrift under) */
 .collection-card span {
     font-size: 0.85rem;
     color: #666;
 }
 
-/* 4. LOG IN / REGISTER SKJEMA (Smalere inni den brede boksen) */
 form, .form-container {
     width: 100%;
     max-width: 400px; 
@@ -120,7 +129,6 @@ input {
     text-align: center;
 }
 
-/* 5. TERMS OF SERVICE (Vannrett linje inni boksen) */
 .terms-container {
     display: flex !important;
     flex-direction: row !important;
@@ -131,13 +139,6 @@ input {
     margin: 10px 0 25px 0;
 }
 
-.terms-container input[type="checkbox"] {
-    width: 18px !important;
-    height: 18px !important;
-    margin: 0 !important;
-}
-
-/* 6. JURIDISKE LENKER (Under den hvite boksen) */
 footer, .legal-links {
     margin-top: 25px;
     display: flex;
@@ -152,7 +153,6 @@ footer a, .legal-links a {
     font-weight: 600;
 }
 
-/* 7. KNAPPER (Gule/Blå med skygge) */
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     padding: 12px 28px;
     background-color: #FAD564;
@@ -171,34 +171,30 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     box-shadow: 0 5px 0px #0d2a38 !important;
 }
 
-header { display: none !important; }
-/* ALBUM-RADENE (Slik du har ringet rundt med gul kant på venstre side) */
 .album-item {
-    background: #FAFAFA !important; /* Lys, nesten hvit bakgrunn */
+    background: #FAFAFA !important; 
     padding: 15px 20px !important;
     margin-bottom: 12px !important;
     border-radius: 12px !important;
-    border: none !important; /* Fjerner den grå kanten rundt hele */
-    border-left: 6px solid #FAD564 !important; /* Den fine gule streken! */
+    border: none !important; 
+    border-left: 6px solid #FAD564 !important; 
     display: flex !important;
-    flex-direction: column !important; /* Stabler tittel og artist */
-    align-items: flex-start !important; /* Tvinger teksten til venstre */
+    flex-direction: column !important; 
+    align-items: flex-start !important; 
     text-align: left !important;
     width: 100% !important;
     box-sizing: border-box;
-    box-shadow: none !important;
-    min-height: auto !important; /* Hindrer at de blir unødvendig høye */
 }
 
-/* Album-tittelen (F.eks. "Blonde") */
 .album-item strong {
     font-size: 1.1rem !important;
     color: #1B475D !important;
     margin-bottom: 4px !important;
 }
 
-/* Artist-navnet (F.eks. "by Frank Ocean") */
 .album-item span {
     font-size: 0.85rem !important;
     color: #888 !important;
 }
+
+header { display: none !important; }
