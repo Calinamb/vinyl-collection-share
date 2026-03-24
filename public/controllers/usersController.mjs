@@ -6,7 +6,7 @@ export default class UsersViewController {
     this.rootEl = rootEl;
     this.users = users;
 
-    // Lytt på events fra web components
+    
     window.addEventListener("user:create", (e) => this.handleCreate(e.detail));
     window.addEventListener("user:delete", (e) => this.handleDelete(e.detail));
     window.addEventListener("user:edit", (e) => this.handleEdit(e.detail));
@@ -15,20 +15,20 @@ export default class UsersViewController {
   }
 
   render() {
-    this.rootEl.innerHTML = `
-      <section>
-        <h2>Users</h2>
-        <ul>
-          ${this.users.map(u => `
-            <li>
-              <strong>${escapeHtml(u.username)}</strong>
-              <small style="opacity:.7">(${u.id})</small>
-              <div style="margin-top:6px">
-                <user-edit user-id="${u.id}" username="${escapeAttr(u.username)}"></user-edit>
-                <user-delete user-id="${u.id}"></user-delete>
-              </div>
-            </li>
-          `).join("")}
+  this.rootEl.innerHTML = `
+   <section>
+   <h2>Users</h2>
+  <ul>
+ ${this.users.map(u => `
+   <li>
+   <strong>${escapeHtml(u.username)}</strong>
+   <small style="opacity:.7">(${u.id})</small>
+   <div style="margin-top:6px">
+  <user-edit user-id="${u.id}" username="${escapeAttr(u.username)}"></user-edit>
+   <user-delete user-id="${u.id}"></user-delete>
+     </div>
+     </li>
+      `).join("")}
         </ul>
       </section>
     `;

@@ -58,7 +58,7 @@ export default class CollectionsViewController {
     section.style.width = "100%";
     
     section.innerHTML = `
-      <h2>${this.mode === "my-vinyls" ? "My Vinyls" : "Vinyl Community"}</h2>
+      <h2>${this.mode === "my-vinyls" ? "My Vinyl Collections" : "Vinyl Community"}</h2>
       ${this.mode === "my-vinyls" ? `<collection-create></collection-create>` : ""}
       
       <div class="collection-grid">

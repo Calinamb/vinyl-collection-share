@@ -81,10 +81,36 @@ main, .container {
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
-.collection-card button, .collection-card .open-btn, .collection-card .delete-btn {
+/* Sentrerer "My Vinyl Collections" og skjemaet */
+.container h1, .container h2, .collection-header {
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+}
+
+/* Midtstiller hele "Create Collection"-seksjonen */
+.collection-controls, .create-collection-form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    width: 100% !important;
+    margin-bottom: 40px !important;
+}
+
+/* Tvinger Open og Delete-knappene til å være identiske */
+.collection-card button, 
+.collection-card .open-btn, 
+.collection-card .delete-btn {
     margin-bottom: 10px !important; 
     width: 100% !important;
-    max-width: 140px !important;
+    max-width: 140px !important; /* Fast bredde for begge */
+    height: 45px !important;    /* Fast høyde for begge */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;      /* Fjerner ulik padding */
 }
 
 .collection-card button:last-child {

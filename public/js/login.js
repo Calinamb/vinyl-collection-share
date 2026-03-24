@@ -21,10 +21,10 @@ loginBtn.addEventListener("click", async () => {
         });
 
         const data = await response.json();
-        console.log("Server response:", data); // Check the Console (F12) to see exactly what the server sends
+        console.log("Server response:", data); 
 
         if (response.ok) {
-            // Check if the server sends the ID as 'userId' or inside a 'user' object
+           
             const idToStore = data.userId || (data.user && data.user.id);
 
             if (idToStore) {
