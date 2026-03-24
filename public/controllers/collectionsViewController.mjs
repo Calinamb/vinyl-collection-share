@@ -21,8 +21,6 @@ export default class CollectionsViewController {
 
   render() {
     this.rootEl.innerHTML = ""; 
-    
-    // Vi tegner kun navigasjonen her, IKKE en ny H1-tittel
     this.renderNavigation();
 
     if (this.currentCollection) {
@@ -36,7 +34,7 @@ export default class CollectionsViewController {
     const nav = document.createElement("div");
     nav.className = "nav-container";
     nav.innerHTML = `
-      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? "🌐 Community" : "🏠 My Collection"}</button>
+      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? "Community" : "My Collection"}</button>
       <button type="button" id="logout-btn">Log Out</button>
     `;
     this.rootEl.appendChild(nav);
@@ -60,7 +58,7 @@ export default class CollectionsViewController {
     section.style.width = "100%";
     
     section.innerHTML = `
-      <h2 style="margin-top:20px;">${this.mode === "my-vinyls" ? "My Vinyls" : "Vinyl Community"}</h2>
+      <h2>${this.mode === "my-vinyls" ? "My Vinyls" : "Vinyl Community"}</h2>
       ${this.mode === "my-vinyls" ? `<collection-create></collection-create>` : ""}
       
       <div class="collection-grid">
@@ -80,9 +78,9 @@ export default class CollectionsViewController {
     `;
 
     section.querySelectorAll(".open-btn").forEach(btn => {
-      btn.onclick = () => {
+      btn.addEventListener("click", () => {
         window.dispatchEvent(new CustomEvent("collection:open", { detail: { id: btn.dataset.id } }));
-      };
+      });
     });
 
     this.rootEl.appendChild(section);
@@ -98,7 +96,7 @@ export default class CollectionsViewController {
       <button type="button" id="backBtn">← Back</button>
       <h2>${escapeHtml(this.currentCollection.title)}</h2>
       
-      ${isOwner ? `<album-add-form collection-id="${this.currentCollection.id}"></album-add-form>` : "<p style='text-align:center;'>Viewing community collection (Read-only)</p>"}
+      ${isOwner ? `<album-add-form collection-id="${this.currentCollection.id}"></album-add-form>` : "<p style='text-align:center;'>Read-only</p>"}
 
       <h3 style="margin-top:30px;">Albums</h3>
       <ul id="album-list-container" class="album-list">
@@ -113,6 +111,11 @@ export default class CollectionsViewController {
     };
 
     this.loadAlbumsForCollection(this.currentCollection.id);
+  }
+
+  async handleOpen({ id }) {
+    this.currentCollection = this.collections.find(c => String(c.id) === String(id));
+    this.render();
   }
 
   async handleAddAlbum({ collectionId, artist, title }) {
@@ -151,7 +154,7 @@ export default class CollectionsViewController {
       const albums = await get(`/collections/${id}/albums`);
       const listContainer = document.getElementById("album-list-container");
       
-      if (albums.length === 0) {
+      if (!albums || albums.length === 0) {
         listContainer.innerHTML = "<p>No albums in this collection yet.</p>";
         return;
       }
@@ -171,12 +174,10 @@ export default class CollectionsViewController {
 class CollectionCreate extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div class="collection-create-container">
-        <form id="col-form">
-          <input name="title" placeholder="New Collection Title" required />
-          <button type="submit">Create Collection</button>
-        </form>
-      </div>
+      <form id="col-form" class="form-container">
+        <input name="title" placeholder="New Collection Title" required />
+        <button type="submit">Create Collection</button>
+      </form>
     `;
     this.querySelector("#col-form").addEventListener("submit", (e) => {
       e.preventDefault();
@@ -206,7 +207,7 @@ class AlbumAddForm extends HTMLElement {
   connectedCallback() {
     const colId = this.getAttribute("collection-id");
     this.innerHTML = `
-      <form id="album-form" class="add-album-form">
+      <form id="album-form" class="form-container">
         <input name="title" placeholder="Album Title" required />
         <input name="artist" placeholder="Artist Name" required />
         <button type="submit">Add Vinyl</button>
