@@ -1,41 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap');
 
 body {
-    background-color: #FFF5D0;
-    color: #1B475D;
+    background-color: #FFF5D0; /* Lys gul bakgrunn */
+    color: #1B475D; /* Mørkeblå tekst */
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     display: flex;
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
-    padding: 60px 20px;
+    padding: 40px 20px;
     box-sizing: border-box;
 }
 
+/* Fjerner alt som ligger utenfor den hvite boksen i app.html */
+header, body > h1, body > button { display: none !important; }
+
 main {
     background-color: #ffffff;
-    padding: 40px 50px;
-    border-radius: 24px;
+    padding: 40px;
+    border-radius: 32px;
     box-shadow: 0 15px 35px rgba(27, 71, 93, 0.1);
     width: 100%;
-    max-width: 500px;
-}
-
-h1, h2 {
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.form-container {
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 
-input:not([type="checkbox"]) {
+h2, h3 { font-weight: 800; color: #1B475D; text-align: center; margin-bottom: 20px; }
+
+/* Navigasjonslinje øverst i boksen */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* Gule knapper som i login/bilde 2 */
+button, .open-btn, #loginBtn, #registerBtn, #add-vinyl-btn {
+    padding: 12px 24px;
+    background-color: #FAD564; /* Den gule fargen */
+    color: #1B475D;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 0px #e5c04f; /* Skygge under knappen */
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #fce08a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0px #e5c04f;
+}
+
+/* Back-knappen (Mørkeblå som i bilde 2) */
+#backBtn, #back-btn {
+    background-color: #1B475D;
+    color: #ffffff;
+    box-shadow: 0 4px 0px #0d2a38;
+}
+
+/* Input-felter */
+input {
     width: 100%;
     padding: 14px;
     margin-bottom: 15px;
@@ -45,98 +77,27 @@ input:not([type="checkbox"]) {
     font-family: 'Montserrat', sans-serif;
 }
 
-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    width: 100%;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin: 0;
-    cursor: pointer;
-}
-
-#registerBtn, #loginBtn {
-    width: 100%;
-    max-width: 220px;
-    padding: 14px;
-    background-color: #FAD564;
-    color: #1B475D;
-    border: none;
-    border-radius: 12px;
-    font-weight: 800;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 4px 0px #e5c04f;
-    margin: 0 auto;
-}
-
-#registerBtn:hover, #loginBtn:hover {
-    background-color: #fce08a;
-    transform: translateY(-2px);
-}
-
-p {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#reg-message {
-    min-height: 20px;
-    font-weight: 600;
-}
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.collection-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* To kolonner */
-    gap: 15px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.collection-card {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 16px;
-    border: 1px solid #eee;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.album-list {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-}
+/* Listevisning av album */
+.album-list { list-style: none; padding: 0; width: 100%; }
 
 .album-item {
-    background: #f4f4f4;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 8px;
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #FAD564; /* Gul stripe på siden */
 }
 
 .delete-btn {
-    background: none;
-    box-shadow: none;
-    color: #ff4444;
-    font-size: 0.7rem;
-    padding: 5px;
-    margin-top: 5px;
+    background: none !important;
+    box-shadow: none !important;
+    color: #ff4444 !important;
+    font-size: 0.8rem !important;
+    text-decoration: underline;
 }
+
+footer { margin-top: 30px; }
+footer a { color: #1B475D; text-decoration: none; font-weight: 600; }
