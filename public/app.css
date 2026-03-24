@@ -6,15 +6,15 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column; 
+    align-items: center; /* Midtstiller boksen horisontalt */
     min-height: 100vh;
-    padding-top: 100px;
+    padding: 100px 20px 40px 20px;
     box-sizing: border-box;
     position: relative;
 }
 
-
+/* 1. NAVIGASJON (Knappene i hjørnene) */
 .nav-container {
     position: absolute;
     top: 30px;
@@ -25,28 +25,28 @@ body {
     justify-content: space-between;
     padding: 0 40px;
     box-sizing: border-box;
-    z-index: 100;
 }
 
-
+/* 2. DEN HVITE BOKSEN (Sentrert innhold) */
 main, .container {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 40px;
     box-shadow: 0 10px 30px rgba(27, 71, 93, 0.05);
-    width: 90%;
-    max-width: 500px; 
+    width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Dette midtstiller alt inni boksen (overskrift, felt, knapper) */
+    text-align: center;
 }
 
-.form-container, form {
+/* 3. SKJEMA-ELEMENTER (Sentrert og begrenset bredde) */
+form, .form-container {
     width: 100%;
-    max-width: 400px; 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Midtstiller innholdet i skjemaet */
 }
 
 input {
@@ -57,8 +57,11 @@ input {
     border: 2px solid #F4F4F4;
     border-radius: 12px;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center; /* Gjør teksten inni boksen sentrert hvis du vil ha det som bilde 2 */
 }
 
+/* 4. TERMS UNDER BOKSEN (Flyttet ut) */
 footer, .legal-links {
     margin-top: 20px;
     display: flex;
@@ -74,8 +77,9 @@ footer a, .legal-links a {
     opacity: 0.7;
 }
 
+/* 5. KNAPPER (Gule med skygge) */
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
-    padding: 12px 24px;
+    padding: 12px 28px;
     background-color: #FAD564;
     color: #1B475D;
     border: none;
@@ -84,6 +88,7 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     text-transform: uppercase;
     cursor: pointer;
     box-shadow: 0 5px 0px #e5c04f;
+    margin-top: 10px;
 }
 
 #back-btn, #backBtn {
@@ -92,48 +97,11 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     box-shadow: 0 5px 0px #0d2a38 !important;
 }
 
-.collection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
-    gap: 20px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-
-.collection-card {
-    background: #fdfdfd;
-    padding: 20px;
-    border-radius: 20px;
-    border: 2px solid #F0F0F0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-}
-
-
-.album-item {
-    background: #f9f9f9;
-    padding: 15px 20px;
-    margin-bottom: 10px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-left: 6px solid #FAD564;
-    box-sizing: border-box;
-}
-
-
-
+/* Terms of Service sjekkboks-rad inni boksen */
 .terms-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin: 5px 0 20px 0;
 }
-
-header { display: none !important; }
