@@ -172,3 +172,33 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
 }
 
 header { display: none !important; }
+/* ALBUM-RADENE (Slik du har ringet rundt med gul kant på venstre side) */
+.album-item {
+    background: #FAFAFA !important; /* Lys, nesten hvit bakgrunn */
+    padding: 15px 20px !important;
+    margin-bottom: 12px !important;
+    border-radius: 12px !important;
+    border: none !important; /* Fjerner den grå kanten rundt hele */
+    border-left: 6px solid #FAD564 !important; /* Den fine gule streken! */
+    display: flex !important;
+    flex-direction: column !important; /* Stabler tittel og artist */
+    align-items: flex-start !important; /* Tvinger teksten til venstre */
+    text-align: left !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    min-height: auto !important; /* Hindrer at de blir unødvendig høye */
+}
+
+/* Album-tittelen (F.eks. "Blonde") */
+.album-item strong {
+    font-size: 1.1rem !important;
+    color: #1B475D !important;
+    margin-bottom: 4px !important;
+}
+
+/* Artist-navnet (F.eks. "by Frank Ocean") */
+.album-item span {
+    font-size: 0.85rem !important;
+    color: #888 !important;
+}
