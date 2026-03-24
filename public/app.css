@@ -9,11 +9,10 @@ body {
     flex-direction: column; 
     align-items: center;
     min-height: 100vh;
-    padding-top: 120px; 
-    box-sizing: border-box;
+    padding-top: 100px;
 }
 
-/* Navigasjon i hjørnene (Community & Log Out) */
+/* Navigasjon i hjørnene */
 .nav-container {
     position: fixed;
     top: 30px;
@@ -23,103 +22,63 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 0 40px;
-    box-sizing: border-box;
     z-index: 9999;
 }
 
-/* Gule knapper */
-button, .open-btn, .nav-container button, #loginBtn, #registerBtn, #col-form button, .add-vinyl-btn {
-    padding: 12px 24px;
+/* Knappene fra Bilde 1 (Gule med skygge) */
+button, .open-btn, .nav-container button, #loginBtn, #registerBtn, .add-vinyl-btn {
+    padding: 10px 25px;
     background-color: #FAD564;
     color: #1B475D;
-    border: none;
-    border-radius: 12px;
+    border: 2px solid #1B475D; /* Mørk kant som i bilde 1 */
+    border-radius: 8px;
     font-weight: 800;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 4px 0px #e5c04f;
-    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0px #1B475D; /* Skygge-effekten fra bilde 1 */
 }
 
-button:hover { transform: translateY(-2px); background-color: #fce08a; }
+button:active {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+}
 
-/* Den hvite boksen */
+/* Den hvite boksen fra Bilde 2 */
 main {
     background-color: #ffffff;
     padding: 40px;
-    border-radius: 32px;
-    box-shadow: 0 15px 35px rgba(27, 71, 93, 0.1);
+    border-radius: 35px;
     width: 90%;
-    max-width: 800px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
 }
 
-/* Fix for at alt inni boksen skal se bra ut */
-section {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-h2 { font-weight: 800; margin-bottom: 25px; text-align: left; }
-
-/* RUTENETTET (Dette fikser det som ser rart ut i Community) */
+/* Community-visning (Mindre og avlange samlinger under hverandre) */
 .collection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Lager kolonner automatisk */
-    gap: 20px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-/* Selve kortene til hver samling */
-.collection-card {
-    background: #fdfdfd;
-    padding: 20px;
-    border-radius: 20px;
-    border: 2px solid #F0F0F0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Sentrerer innhold inni kortet */
-    gap: 10px;
-    text-align: center;
+    gap: 15px;
+    width: 100%;
 }
 
-/* Back-knappen (Mørkeblå) */
+.collection-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    border: 1px solid #eee;
+}
+
+.collection-card strong { font-size: 1rem; }
+.collection-card p { margin: 0; font-size: 0.8rem; opacity: 0.7; }
+
+/* Back-knappen (Mørk blå som i bilde 2) */
 #backBtn, #back-btn {
     background-color: #1B475D !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 0px #0d2a38 !important;
-    width: fit-content;
-}
-
-/* Input-feltene */
-input {
-    width: 100%;
-    max-width: 500px;
-    padding: 14px;
-    margin-bottom: 15px;
-    border: 2px solid #F0F0F0;
-    border-radius: 12px;
-    box-sizing: border-box;
-}
-
-/* Album-rader (Gul stripe på siden) */
-.album-item {
-    background: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    border-left: 6px solid #FAD564;
-}
-
-.delete-btn {
-    background: none !important;
-    box-shadow: none !important;
-    color: #ff4444 !important;
-    font-size: 0.8rem !important;
-    text-decoration: underline;
+    border-color: #0d2a38;
+    box-shadow: 2px 2px 0px #0d2a38;
 }
