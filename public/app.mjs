@@ -6,9 +6,9 @@ if ("serviceWorker" in navigator) {
   const isLocal = /127\.0\.0\.1|localhost/.test(location.hostname);
   if (!isLocal) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/service-worker.js")
-        .then(r => console.log("SW:", r.scope))
-        .catch(err => console.log("SW failed:", err));
+      navigator.serviceWorker.register("/serviceWorker.js")
+        .then(r => console.log("Service Worker registered:", r.scope))
+        .catch(err => console.log("Service Worker failed:", err));
     });
   } else {
     navigator.serviceWorker.getRegistrations?.().then(rs => rs.forEach(r => r.unregister()));
