@@ -11,6 +11,13 @@ This project is developed as a semester project and will evolve over time.
 ---
 
 ## Feature Map
+I have used Trello to map out the application's features using a User Story Map approach. To visualize the horizontal slices (prioritization), I have used color-coded labels:
+
+Green (MVP): Minimum Viable Product. These are the core features implemented in this delivery, including user authentication, vinyl management, and PWA requirements (Offline & Manifest).
+
+Yellow (V2): Planned enhancements for the next release, focusing on editing capabilities, data deletion, and improved search.
+
+Purple (V3): Future visions and advanced features like image uploads, social media sharing, and third-party API integrations
 
 ### User Goal
 Share a personal vinyl collection with others.
