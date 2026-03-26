@@ -362,29 +362,30 @@ header { display: none !important; }
 
 .detail-body {
   display: flex;
-  gap: 32px;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
-  align-items: flex-start;
+
 }
 
-.detail-left {
-  flex: 1;
-}
-
-.detail-right {
-  flex: 1;
-}
-
-.detail-right--full {
-  flex: 2;
+.detail-left, .detail-right {
+  width: 100%;
+    flex: none;
 }
 
 .album-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
+    width: 100%;
+    padding: 0;
+  margin: 20px;
+ 
 }
+
+.detail-right h3 {
+    text-align: left;
+    margin-bottom: 15px;
+    color: #1B475D;
+}
+
 .delete-account-section {
   margin-top: auto;
   padding-top: 24px;
