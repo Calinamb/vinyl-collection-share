@@ -337,26 +337,29 @@ header { display: none !important; }
   width: 100%;
 }
 
-/* ── Detail view header ── */
+
 .detail-header {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 16px;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
-.back-btn {
+.back-btn #back-btn {
   flex-shrink: 0;
+  align-self: flex-start;
+  margin-bottom: 20px;   
 }
 
 .detail-title {
-  flex: 1;
-  text-align: center;
+  text-align: left;
   margin: 0;
+  flex: 1;
 }
 
-/* ── Detail view two column layout ── */
+
 .detail-body {
   display: flex;
   gap: 32px;
@@ -395,19 +398,6 @@ header { display: none !important; }
   font-weight: 600;
 }
 
-#collection-section {
-  align-items: flex-start !important;
-}
-
-#collection-section .section-full {
-  align-items: flex-start;
-}
-
-#collection-section .section-full h2 {
-  width: 100%;
-  text-align: center;
-}
-
 #collection-section .section-full .form-container {
   width: 100%;
   max-width: 100%;
@@ -415,5 +405,14 @@ header { display: none !important; }
 }
 
 #collection-section .section-full input {
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: left;
+  padding-left: 20px;
+}
+
+#collection-section .section-full .add-vinyl-btn {
+  width: 100%;
   max-width: 100%;
+  align-self: stretch;
 }
