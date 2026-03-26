@@ -1,8 +1,7 @@
 # Vinyl Collection Share
 
 ## Project Description
-Vinyl Collection Share is a full-stack web application where users can create, modify,
-and share their vinyl record collections.
+I developed Vinyl Collection Share to give vinyl collectors an easy way to organize and share their collection, with a focus on accessibility and offline functionality.
 
 The goal of the application is to allow users to register their personal vinyl collections
 and make them available to others through a shared link.
@@ -19,7 +18,7 @@ Share a personal vinyl collection with others.
 ### User Actions and Features
 
 #### Account
-- User accounts (planned feature)
+- User accounts implemented with PostgreSQL persistence
 - Authentication handled separately from content API
 
 #### Collections

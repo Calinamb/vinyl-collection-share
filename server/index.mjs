@@ -15,9 +15,11 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Routes
+
 app.use("/users", createUsersRouter());
 app.use("/collections", createCollectionsRouter());
+
+
 
 app.use((err, req, res, next) => {
   console.error("Critical error in server:");

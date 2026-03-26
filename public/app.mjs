@@ -1,5 +1,6 @@
 import { get } from "./modules/fetchManager.mjs";
 import CollectionsViewController from "./controllers/collectionsViewController.mjs";
+import { t, getLang } from './modules/i18n,.mjs';
 
 if ("serviceWorker" in navigator) {
   const isLocal = /127\.0\.0\.1|localhost/.test(location.hostname);
