@@ -18,12 +18,31 @@ const translations = {
     error_login_server: "Serverfeil under innlogging.",
     error_delete_user: "Kunne ikke slette bruker.",
     error_user_not_found: "Bruker ikke funnet.",
-  }
+  },
+
+  fr: {
+  error_server: "Une erreur s'est produite sur le serveur.",
+  error_not_found: "Ressource introuvable.",
+  error_username_required: "Nom d'utilisateur et mot de passe requis.",
+  error_could_not_create_user: "Impossible de créer l'utilisateur. Le nom est peut-être déjà pris.",
+  error_login_failed: "Nom d'utilisateur ou mot de passe invalide.",
+  error_login_server: "Erreur serveur lors de la connexion.",
+  error_delete_user: "Impossible de supprimer l'utilisateur.",
+  error_user_not_found: "Utilisateur introuvable.",
+  error_fetch_community: "Impossible de récupérer les collections.",
+  error_fetch_collections: "Impossible de récupérer les collections.",
+  error_save_collection: "Impossible de sauvegarder la collection.",
+  error_delete_collection: "Impossible de supprimer la collection.",
+  error_fetch_albums: "Impossible de récupérer les albums.",
+  error_save_album: "Impossible de sauvegarder l'album.",
+}
 };
 
 export function getLang(req) {
-  const header = req.headers["accept-language"] || "en";
-  return header.startsWith("no") ? "no" : "en";
+  const header = (req.headers["accept-language"] || "en").toLowerCase();
+  if (header.startsWith("nb") || header.startsWith("nn") || header.startsWith("no")) return "no";
+  if (header.startsWith("fr")) return "fr";
+  return "en";
 }
 
 export function t(req, key) {

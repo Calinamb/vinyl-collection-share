@@ -24,6 +24,7 @@ const translations = {
     confirm_delete_account: "Are you sure you want to delete your account? This will delete all your collections and cannot be undone.",
     error_delete_account: "Could not delete account.",
     confirm_delete_collection: "Are you sure?",
+    delete_account_warning: " This will permanently delete your account and all your collections.",
     no_albums: "No albums in this collection yet.",
     loading_albums: "Loading albums...",
     add_vinyl: "Add Vinyl",
@@ -35,6 +36,7 @@ const translations = {
     back: "← Back",
     albums_count: "albums",
     by: "by",
+    albums_heading: "Albums",
 
     users_title: "Users",
     create_user_title: "Create User",
@@ -45,6 +47,7 @@ const translations = {
     edit_label: "Edit",
     save_btn: "Save",
   },
+
   no: {
     // Register
     error_fill_fields: "Vennligst fyll inn alle feltene.",
@@ -70,6 +73,7 @@ const translations = {
     confirm_delete_account: "Er du sikker på at du vil slette kontoen din? Dette sletter alle dine samlinger og kan ikke angres.",
     error_delete_account: "Kunne ikke slette konto.",
     confirm_delete_collection: "Er du sikker?",
+    delete_account_warning: "⚠️ Dette vil permanent slette kontoen din og alle samlinger.",
     no_albums: "Ingen album i denne samlingen ennå.",
     loading_albums: "Laster album...",
     add_vinyl: "Legg til Vinyl",
@@ -81,6 +85,7 @@ const translations = {
     back: "← Tilbake",
     albums_count: "album",
     by: "av",
+    albums_heading: "Album",
 
     users_title: "Brukere",
     create_user_title: "Opprett Bruker",
@@ -90,11 +95,64 @@ const translations = {
     delete_btn: "Slett",
     edit_label: "Rediger",
     save_btn: "Lagre",
-  }
+
+  },
+  fr: {
+  // Register
+  error_fill_fields: "Veuillez remplir tous les champs.",
+  error_agree_terms: "Vous devez accepter les conditions.",
+  register_success: "Compte créé! Redirection...",
+  error_register_failed: "Échec de l'inscription. Réessayez.",
+  error_server: "Erreur serveur. Réessayez plus tard.",
+
+  // Login
+  error_fill_login: "Veuillez entrer votre identifiant et mot de passe.",
+  login_success: "Connecté! Redirection...",
+  error_login_failed: "Échec de la connexion. Réessayez.",
+  error_no_user_id: "Erreur: Impossible de récupérer l'ID utilisateur.",
+  error_connection: "Erreur de connexion. Le serveur est-il en marche?",
+
+  // Collections
+  my_collections: "Mes Collections de Vinyles",
+  community: "Communauté Vinyle",
+  nav_community: "Communauté",
+  nav_my_collection: "Ma Collection",
+  nav_logout: "Se Déconnecter",
+  nav_delete_account: "Supprimer le Compte",
+  confirm_delete_account: "Êtes-vous sûr de vouloir supprimer votre compte? Cela supprimera toutes vos collections.",
+  error_delete_account: "Impossible de supprimer le compte.",
+  confirm_delete_collection: "Êtes-vous sûr?",
+  delete_account_warning: "⚠️ Cela supprimera définitivement votre compte et toutes vos collections.",
+  no_albums: "Aucun album dans cette collection.",
+  loading_albums: "Chargement des albums...",
+  add_vinyl: "Ajouter un Vinyle",
+  create_collection: "Créer une Collection",
+  new_collection_placeholder: "Titre de la nouvelle collection",
+  album_title_placeholder: "Titre de l'album",
+  artist_placeholder: "Nom de l'artiste",
+  open: "Ouvrir",
+  back: "← Retour",
+  albums_count: "albums",
+  by: "par",
+  albums_heading: "Albums",
+  delete_btn: "Supprimer",
+
+  // Users
+  users_title: "Utilisateurs",
+  create_user_title: "Créer un Utilisateur",
+  username_label: "Nom d'utilisateur:",
+  consent_label: "J'accepte les conditions d'utilisation et la politique de confidentialité",
+  create_user_btn: "Créer",
+  edit_label: "Modifier",
+  save_btn: "Enregistrer",
+}
 };
 
 export function getLang() {
-  return navigator.language?.startsWith("no") ? "no" : "en";
+  const lang = navigator.language?.toLowerCase() || "en";
+  if (lang.startsWith("nb") || lang.startsWith("nn") || lang.startsWith("no")) return "no";
+  if (lang.startsWith("fr")) return "fr";
+  return "en";
 }
 
 export function t(key) {

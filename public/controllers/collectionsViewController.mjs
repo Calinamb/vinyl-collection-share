@@ -52,8 +52,11 @@ export default class CollectionsViewController {
         <button type="button" id="close-drawer-btn" aria-label="Close menu" class="close-drawer-btn">✕</button>
         <p class="drawer-username"> ${escapeHtml(username)}</p>
         <button type="button" id="logout-btn" class="drawer-btn">${t("nav_logout")}</button>
-        <button type="button" id="delete-account-btn" class="drawer-btn btn-danger">${t("nav_delete_account")}</button>
       </nav>
+      <div class="delete-account-section">
+  <p class="delete-account-warning">${t("delete_account_warning")}</p>
+  <button type="button" id="delete-account-btn" class="drawer-btn btn-danger">${t("nav_delete_account")}</button>
+</div>
     `;
 
     this.rootEl.appendChild(nav);
@@ -131,31 +134,41 @@ export default class CollectionsViewController {
 
     this.rootEl.appendChild(section);
   }
+renderDetailView() {
+  const currentUserId = localStorage.getItem("userId");
+  const isOwner = String(this.currentCollection.user_id) === String(currentUserId);
 
-  renderDetailView() {
-    const currentUserId = localStorage.getItem("userId");
-    const isOwner = String(this.currentCollection.user_id) === String(currentUserId);
+  const section = document.createElement("section");
+  section.className = "section-full";
+  section.innerHTML = `
+    <div class="detail-header">
+      <button type="button" id="backBtn" class="back-btn">${t("back")}</button>
+      <h2 class="detail-title">${escapeHtml(this.currentCollection.title)}</h2>
+    </div>
 
-    const section = document.createElement("section");
-    section.className = "section-full";
-    section.innerHTML = `
-      <button type="button" id="backBtn">${t("back")}</button>
-      <h2>${escapeHtml(this.currentCollection.title)}</h2>
-      ${isOwner ? `<album-add-form collection-id="${this.currentCollection.id}"></album-add-form>` : ""}
-      <h3 class="albums-heading">Albums</h3>
-      <ul id="album-list-container" class="album-list">
-        <p>${t("loading_albums")}</p>
-      </ul>
-    `;
+    <div class="detail-body">
+      ${isOwner ? `
+        <div class="detail-left">
+          <album-add-form collection-id="${this.currentCollection.id}"></album-add-form>
+        </div>
+      ` : ""}
+      <div class="detail-right ${isOwner ? "" : "detail-right--full"}">
+        <h3>${t("albums_heading")}</h3>
+        <ul id="album-list-container" class="album-list">
+          <p>${t("loading_albums")}</p>
+        </ul>
+      </div>
+    </div>
+  `;
 
-    this.rootEl.appendChild(section);
+  this.rootEl.appendChild(section);
 
-    document.getElementById("backBtn").onclick = () => {
-      window.dispatchEvent(new CustomEvent("collection:back"));
-    };
+  document.getElementById("backBtn").onclick = () => {
+    window.dispatchEvent(new CustomEvent("collection:back"));
+  };
 
-    this.loadAlbumsForCollection(this.currentCollection.id);
-  }
+  this.loadAlbumsForCollection(this.currentCollection.id);
+}
 
   async handleOpen({ id }) {
     this.currentCollection = this.collections.find(c => String(c.id) === String(id));
