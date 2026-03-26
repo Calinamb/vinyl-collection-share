@@ -8,15 +8,19 @@ const ASSETS = [
   "/privacy.html",
   "/app.css",
   "/app.mjs",
-  "/js/login.mjs",
-  "/js/register.mjs",
+  "/login.mjs",
+  "/register.mjs",
   "/modules/fetchManager.mjs",
   "/modules/http.mjs",
   "/modules/i18n.mjs",
   "/offline.html",
   "/controllers/collectionsViewController.mjs",
-  "/controllers/usersViewController.mjs"
-  
+  "/controllers/usersViewController.mjs",
+  "/manifest.json",
+  "/server/index.mjs",
+  "server/routes/usersRoutes.mjs",
+  "server/routes/collectionsRoutes.mjs",
+  "server/i18n.mjs"
 ];
 
 self.addEventListener("install", (e) => {
