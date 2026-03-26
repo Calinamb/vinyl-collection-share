@@ -50,7 +50,7 @@ export default class CollectionsViewController {
 
       <nav id="side-drawer" class="side-drawer" aria-label="Main menu">
         <button type="button" id="close-drawer-btn" aria-label="Close menu" class="close-drawer-btn">✕</button>
-        <p class="drawer-username">🎵 ${escapeHtml(username)}</p>
+        <p class="drawer-username"> ${escapeHtml(username)}</p>
         <button type="button" id="logout-btn" class="drawer-btn">${t("nav_logout")}</button>
         <button type="button" id="delete-account-btn" class="drawer-btn btn-danger">${t("nav_delete_account")}</button>
       </nav>

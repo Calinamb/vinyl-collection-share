@@ -289,7 +289,25 @@ header { display: none !important; }
 
 .section-full {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.section-full h2 {
+  text-align: center;
+}
+
+.section-full .collection-grid {
+  align-self: stretch;
+}
+
+.section-full .form-container {
+  align-self: center;
+  align-items: center;
+  width: 100%;
+}
+
 
 
 .collection-owner {
