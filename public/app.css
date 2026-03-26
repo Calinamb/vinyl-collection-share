@@ -197,8 +197,124 @@ header { display: none !important; }
     margin-bottom: 4px !important;
 }
 
-
 .album-item span {
     font-size: 0.85rem !important;
     color: #888 !important;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  box-shadow: none;
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #1B475D;
+  border-radius: 2px;
+}
+
+
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.drawer-overlay--visible {
+  display: block;
+}
+
+.side-drawer {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 24px;
+  box-sizing: border-box;
+  transition: left 0.25s ease;
+  border-radius: 0 30px 30px 0;
+}
+
+.side-drawer--open {
+  left: 0;
+}
+
+.close-drawer-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #1B475D;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.drawer-username {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #1B475D;
+  margin-bottom: 32px;
+}
+
+.drawer-btn {
+  margin-bottom: 12px;
+  width: 100%;
+  text-align: left;
+}
+
+.btn-danger {
+  background-color: #e05c5c !important;
+  color: white !important;
+  box-shadow: 0 5px 0px #b84444 !important;
+}
+
+
+.section-full {
+  width: 100%;
+}
+
+
+.collection-owner {
+  font-size: 0.8rem;
+  margin: 5px 0;
+}
+
+.collection-count {
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+
+.albums-heading {
+  margin-top: 30px;
+}
+
+.collection-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.collection-card-actions button {
+  width: 100%;
 }
