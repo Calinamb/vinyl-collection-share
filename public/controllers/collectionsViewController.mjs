@@ -32,73 +32,73 @@ export default class CollectionsViewController {
   }
 
   renderNavigation() {
-    const username = localStorage.getItem("username") || "User";
-    const nav = document.createElement("div");
-    nav.className = "nav-container";
-    nav.innerHTML = `
-      <button type="button" id="hamburger-btn" aria-label="Open menu" class="hamburger-btn">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
+  const username = localStorage.getItem("username") || "User";
+  const nav = document.createElement("div");
+  nav.className = "nav-container";
+  nav.innerHTML = `
+    <button type="button" id="hamburger-btn" aria-label="Open menu" class="hamburger-btn">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
 
-      <button type="button" id="community-nav-btn">
-        ${this.mode === "my-vinyls" ? t("nav_community") : t("nav_my_collection")}
-      </button>
+    <button type="button" id="community-nav-btn">
+      ${this.mode === "my-vinyls" ? t("nav_community") : t("nav_my_collection")}
+    </button>
 
-      <div id="drawer-overlay" class="drawer-overlay"></div>
+    <div id="drawer-overlay" class="drawer-overlay"></div>
 
-      <nav id="side-drawer" class="side-drawer" aria-label="Main menu">
-        <button type="button" id="close-drawer-btn" aria-label="Close menu" class="close-drawer-btn">✕</button>
-        <p class="drawer-username"> ${escapeHtml(username)}</p>
-        <button type="button" id="logout-btn" class="drawer-btn">${t("nav_logout")}</button>
-      </nav>
+    <nav id="side-drawer" class="side-drawer" aria-label="Main menu">
+      <button type="button" id="close-drawer-btn" aria-label="Close menu" class="close-drawer-btn">✕</button>
+      <p class="drawer-username">🎵 ${escapeHtml(username)}</p>
+      <button type="button" id="logout-btn" class="drawer-btn">${t("nav_logout")}</button>
       <div class="delete-account-section">
-  <p class="delete-account-warning">${t("delete_account_warning")}</p>
-  <button type="button" id="delete-account-btn" class="drawer-btn btn-danger">${t("nav_delete_account")}</button>
-</div>
-    `;
+        <p class="delete-account-warning">${t("delete_account_warning")}</p>
+        <button type="button" id="delete-account-btn" class="drawer-btn btn-danger">${t("nav_delete_account")}</button>
+      </div>
+    </nav>
+  `;
 
-    this.rootEl.appendChild(nav);
+  this.rootEl.appendChild(nav);
 
-    nav.querySelector("#hamburger-btn").addEventListener("click", () => {
-      nav.querySelector("#side-drawer").classList.add("side-drawer--open");
-      nav.querySelector("#drawer-overlay").classList.add("drawer-overlay--visible");
-    });
+  nav.querySelector("#hamburger-btn").addEventListener("click", () => {
+    nav.querySelector("#side-drawer").classList.add("side-drawer--open");
+    nav.querySelector("#drawer-overlay").classList.add("drawer-overlay--visible");
+  });
 
-    const closeDrawer = () => {
-      nav.querySelector("#side-drawer").classList.remove("side-drawer--open");
-      nav.querySelector("#drawer-overlay").classList.remove("drawer-overlay--visible");
-    };
+  const closeDrawer = () => {
+    nav.querySelector("#side-drawer").classList.remove("side-drawer--open");
+    nav.querySelector("#drawer-overlay").classList.remove("drawer-overlay--visible");
+  };
 
-    nav.querySelector("#close-drawer-btn").addEventListener("click", closeDrawer);
-    nav.querySelector("#drawer-overlay").addEventListener("click", closeDrawer);
+  nav.querySelector("#close-drawer-btn").addEventListener("click", closeDrawer);
+  nav.querySelector("#drawer-overlay").addEventListener("click", closeDrawer);
 
-    nav.querySelector("#logout-btn").addEventListener("click", () => {
+  nav.querySelector("#logout-btn").addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "index.html";
+  });
+
+  nav.querySelector("#delete-account-btn").addEventListener("click", async () => {
+    closeDrawer();
+    if (!confirm(t("confirm_delete_account"))) return;
+    const userId = localStorage.getItem("userId");
+    try {
+      await del(`/users/${userId}`);
       localStorage.clear();
       window.location.href = "index.html";
-    });
+    } catch (err) {
+      alert(t("error_delete_account") + " " + err.message);
+    }
+  });
 
-    nav.querySelector("#delete-account-btn").addEventListener("click", async () => {
-      closeDrawer();
-      if (!confirm(t("confirm_delete_account"))) return;
-      const userId = localStorage.getItem("userId");
-      try {
-        await del(`/users/${userId}`);
-        localStorage.clear();
-        window.location.href = "index.html";
-      } catch (err) {
-        alert(t("error_delete_account") + " " + err.message);
-      }
-    });
-
-    nav.querySelector("#community-nav-btn").addEventListener("click", async () => {
-      this.mode = (this.mode === "my-vinyls") ? "community" : "my-vinyls";
-      this.currentCollection = null;
-      await this.refreshCollections();
-      this.render();
-    });
-  }
+  nav.querySelector("#community-nav-btn").addEventListener("click", async () => {
+    this.mode = (this.mode === "my-vinyls") ? "community" : "my-vinyls";
+    this.currentCollection = null;
+    await this.refreshCollections();
+    this.render();
+  });
+}
 
   renderListView() {
     const currentUserId = localStorage.getItem("userId");
@@ -134,6 +134,7 @@ export default class CollectionsViewController {
 
     this.rootEl.appendChild(section);
   }
+
 renderDetailView() {
   const currentUserId = localStorage.getItem("userId");
   const isOwner = String(this.currentCollection.user_id) === String(currentUserId);

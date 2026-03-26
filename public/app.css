@@ -394,3 +394,26 @@ header { display: none !important; }
   margin-bottom: 8px;
   font-weight: 600;
 }
+
+#collection-section {
+  align-items: flex-start !important;
+}
+
+#collection-section .section-full {
+  align-items: flex-start;
+}
+
+#collection-section .section-full h2 {
+  width: 100%;
+  text-align: center;
+}
+
+#collection-section .section-full .form-container {
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch;
+}
+
+#collection-section .section-full input {
+  max-width: 100%;
+}
