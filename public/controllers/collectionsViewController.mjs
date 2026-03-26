@@ -1,4 +1,5 @@
 import { get, post, del } from "../modules/fetchManager.mjs";
+import { t } from "../modules/i18n.mjs";
 
 export default class CollectionsViewController {
   constructor(rootEl, collections = []) {
@@ -20,7 +21,7 @@ export default class CollectionsViewController {
   }
 
   render() {
-    this.rootEl.innerHTML = ""; 
+    this.rootEl.innerHTML = "";
     this.renderNavigation();
 
     if (this.currentCollection) {
@@ -34,14 +35,30 @@ export default class CollectionsViewController {
     const nav = document.createElement("div");
     nav.className = "nav-container";
     nav.innerHTML = `
-      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? "Community" : "My Collection"}</button>
-      <button type="button" id="logout-btn">Log Out</button>
+      <button type="button" id="community-nav-btn">${this.mode === "my-vinyls" ? t("nav_community") : t("nav_my_collection")}</button>
+      <div style="display:flex; gap:10px;">
+        <button type="button" id="delete-account-btn" style="background-color:#e05c5c; color:white; box-shadow: 0 5px 0px #b84444;">${t("nav_delete_account")}</button>
+        <button type="button" id="logout-btn">${t("nav_logout")}</button>
+      </div>
     `;
     this.rootEl.appendChild(nav);
 
     nav.querySelector("#logout-btn").addEventListener("click", () => {
       localStorage.clear();
       location.reload();
+    });
+
+    nav.querySelector("#delete-account-btn").addEventListener("click", async () => {
+      if (!confirm(t("confirm_delete_account"))) return;
+
+      const userId = localStorage.getItem("userId");
+      try {
+        await del(`/users/${userId}`);
+        localStorage.clear();
+        window.location.href = "index.html";
+      } catch (err) {
+        alert(t("error_delete_account") + " " + err.message);
+      }
     });
 
     nav.querySelector("#community-nav-btn").addEventListener("click", async () => {
@@ -56,20 +73,19 @@ export default class CollectionsViewController {
     const currentUserId = localStorage.getItem("userId");
     const section = document.createElement("section");
     section.style.width = "100%";
-    
+
     section.innerHTML = `
-      <h2>${this.mode === "my-vinyls" ? "My Vinyl Collections" : "Vinyl Community"}</h2>
+      <h2>${this.mode === "my-vinyls" ? t("my_collections") : t("community")}</h2>
       ${this.mode === "my-vinyls" ? `<collection-create></collection-create>` : ""}
-      
       <div class="collection-grid">
         ${this.collections.map(c => {
           const isOwner = String(c.user_id) === String(currentUserId);
           return `
             <div class="collection-card">
               <strong>${escapeHtml(c.title)}</strong>
-              ${this.mode === "community" ? `<p style="font-size:0.8rem; margin:5px 0;">by ${escapeHtml(c.username)}</p>` : ""}
-              <p style="opacity:.7; font-size:0.8rem;">(${c.album_count || 0} albums)</p>
-              <button type="button" class="open-btn" data-id="${c.id}">Open</button>
+              ${this.mode === "community" ? `<p style="font-size:0.8rem; margin:5px 0;">${t("by")} ${escapeHtml(c.username)}</p>` : ""}
+              <p style="opacity:.7; font-size:0.8rem;">(${c.album_count || 0} ${t("albums_count")})</p>
+              <button type="button" class="open-btn" data-id="${c.id}">${t("open")}</button>
               ${(isOwner && this.mode === "my-vinyls") ? `<collection-delete collection-id="${c.id}"></collection-delete>` : ''}
             </div>
           `;
@@ -89,21 +105,19 @@ export default class CollectionsViewController {
   renderDetailView() {
     const currentUserId = localStorage.getItem("userId");
     const isOwner = String(this.currentCollection.user_id) === String(currentUserId);
-    
+
     const section = document.createElement("section");
     section.style.width = "100%";
     section.innerHTML = `
-      <button type="button" id="backBtn">← Back</button>
+      <button type="button" id="backBtn">${t("back")}</button>
       <h2>${escapeHtml(this.currentCollection.title)}</h2>
-      
-     
       ${isOwner ? `<album-add-form collection-id="${this.currentCollection.id}"></album-add-form>` : ""}
       <h3 style="margin-top:30px;">Albums</h3>
       <ul id="album-list-container" class="album-list">
-        <p>Loading albums...</p>
+        <p>${t("loading_albums")}</p>
       </ul>
     `;
-    
+
     this.rootEl.appendChild(section);
 
     document.getElementById("backBtn").onclick = () => {
@@ -143,7 +157,7 @@ export default class CollectionsViewController {
   }
 
   async handleDelete({ id }) {
-    if(!confirm("Are you sure?")) return;
+    if (!confirm(t("confirm_delete_collection"))) return;
     await del(`/collections/${id}`);
     await this.refreshCollections();
     this.render();
@@ -153,16 +167,16 @@ export default class CollectionsViewController {
     try {
       const albums = await get(`/collections/${id}/albums`);
       const listContainer = document.getElementById("album-list-container");
-      
+
       if (!albums || albums.length === 0) {
-        listContainer.innerHTML = "<p>No albums in this collection yet.</p>";
+        listContainer.innerHTML = `<p>${t("no_albums")}</p>`;
         return;
       }
 
       listContainer.innerHTML = albums.map(a => `
         <li class="album-item">
-            <strong>${escapeHtml(a.title)}</strong>
-            <span>${escapeHtml(a.artist)}</span>
+          <strong>${escapeHtml(a.title)}</strong>
+          <span>${escapeHtml(a.artist)}</span>
         </li>
       `).join("");
     } catch (err) {
@@ -175,8 +189,8 @@ class CollectionCreate extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <form id="col-form" class="form-container">
-        <input name="title" placeholder="New Collection Title" required />
-        <button type="submit">Create Collection</button>
+        <input name="title" placeholder="${t("new_collection_placeholder")}" required />
+        <button type="submit">${t("create_collection")}</button>
       </form>
     `;
     this.querySelector("#col-form").addEventListener("submit", (e) => {
@@ -194,7 +208,7 @@ if (!customElements.get("collection-create")) customElements.define("collection-
 class CollectionDelete extends HTMLElement {
   connectedCallback() {
     const id = this.getAttribute("collection-id");
-    this.innerHTML = `<button type="button" class="delete-btn">Delete</button>`;
+    this.innerHTML = `<button type="button" class="delete-btn">${t("confirm_delete_collection")}</button>`;
     this.querySelector("button").addEventListener("click", () => {
       if (!id) return;
       window.dispatchEvent(new CustomEvent("collection:delete", { detail: { id } }));
@@ -208,16 +222,16 @@ class AlbumAddForm extends HTMLElement {
     const colId = this.getAttribute("collection-id");
     this.innerHTML = `
       <form id="album-form" class="form-container">
-        <input name="title" placeholder="Album Title" required />
-        <input name="artist" placeholder="Artist Name" required />
-        <button type="submit">Add Vinyl</button>
+        <input name="title" placeholder="${t("album_title_placeholder")}" required />
+        <input name="artist" placeholder="${t("artist_placeholder")}" required />
+        <button type="submit">${t("add_vinyl")}</button>
       </form>
     `;
     this.querySelector("#album-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const fd = new FormData(e.target);
-      window.dispatchEvent(new CustomEvent("album:add", { 
-        detail: { collectionId: colId, artist: fd.get("artist"), title: fd.get("title") } 
+      window.dispatchEvent(new CustomEvent("album:add", {
+        detail: { collectionId: colId, artist: fd.get("artist"), title: fd.get("title") }
       }));
       e.target.reset();
     });

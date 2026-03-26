@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { validateCollection } from "../middelwear/validateCollection.js"; 
+import { validateCollection } from "../middleware/validateCollection.mjs";
 import { query } from "../db.mjs";
+import { t } from "../i18n.mjs";
 
 export function createCollectionsRouter() {
   const router = Router();
@@ -18,7 +19,7 @@ export function createCollectionsRouter() {
       res.json(result.rows);
     } catch (err) {
       console.error("Error fetching community collections:", err);
-      res.status(500).json({ error: "Could not fetch community" });
+      res.status(500).json({ error: t(req, "error_fetch_community") });
     }
   });
 
@@ -31,18 +32,18 @@ export function createCollectionsRouter() {
          LEFT JOIN albums a ON c.id = a.collection_id
          WHERE c.user_id = $1
          GROUP BY c.id
-         ORDER BY c.created_at DESC`, 
+         ORDER BY c.created_at DESC`,
         [userId]
       );
       res.json(result.rows);
     } catch (err) {
       console.error("Error fetching collections:", err);
-      res.status(500).json({ error: "Could not fetch collections" });
+      res.status(500).json({ error: t(req, "error_fetch_collections") });
     }
   });
 
   router.post("/", validateCollection, async (req, res) => {
-    const { title, userId } = req.body; 
+    const { title, userId } = req.body;
     try {
       const result = await query(
         "INSERT INTO collections (title, user_id) VALUES ($1, $2) RETURNING *",
@@ -51,7 +52,7 @@ export function createCollectionsRouter() {
       res.status(201).json(result.rows[0]);
     } catch (err) {
       console.error("Error saving collection:", err);
-      res.status(500).json({ error: "Could not save collection" });
+      res.status(500).json({ error: t(req, "error_save_collection") });
     }
   });
 
@@ -62,7 +63,7 @@ export function createCollectionsRouter() {
       res.status(204).end();
     } catch (err) {
       console.error("Error deleting collection:", err);
-      res.status(500).json({ error: "Could not delete collection" });
+      res.status(500).json({ error: t(req, "error_delete_collection") });
     }
   });
 
@@ -76,7 +77,7 @@ export function createCollectionsRouter() {
       res.json(result.rows);
     } catch (err) {
       console.error("Error fetching albums:", err);
-      res.status(500).json({ error: "Could not fetch albums" });
+      res.status(500).json({ error: t(req, "error_fetch_albums") });
     }
   });
 
@@ -91,7 +92,7 @@ export function createCollectionsRouter() {
       res.status(201).json(result.rows[0]);
     } catch (err) {
       console.error("Error saving album:", err);
-      res.status(500).json({ error: "Could not save album" });
+      res.status(500).json({ error: t(req, "error_save_album") });
     }
   });
 

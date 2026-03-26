@@ -4,26 +4,25 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { createUsersRouter } from "./routes/usersRoutes.mjs";
 import { createCollectionsRouter } from "./routes/collectionsRoutes.mjs";
+import { t } from "./i18n.mjs";
 
 const app = express();
-
 
 app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Ruter
+// Routes
 app.use("/users", createUsersRouter());
 app.use("/collections", createCollectionsRouter());
 
 app.use((err, req, res, next) => {
   console.error("Critical error in server:");
   console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong on the server" });
+  res.status(500).json({ error: t(req, "error_server") });
 });
 
 const port = process.env.PORT || 3000;

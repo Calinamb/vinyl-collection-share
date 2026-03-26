@@ -14,6 +14,7 @@ body {
     position: relative;
 }
 
+
 .nav-container {
     position: absolute;
     top: 30px;
@@ -43,28 +44,23 @@ main, .container {
     align-items: center; 
 }
 
-.container h1, .container h2, .collection-header {
-    text-align: center !important;
-    width: 100% !important;
-    margin-bottom: 20px !important;
-}
-
-.collection-controls, .create-collection-form {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 15px !important;
-    width: 100% !important;
-    margin-bottom: 30px !important;
-}
 
 .collection-grid {
-    display: grid !important;
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     width: 100%;
     margin-top: 20px;
 }
+
+.collection-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
 
 .collection-card {
     background: #ffffff;
@@ -81,47 +77,13 @@ main, .container {
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
-/* Sentrerer "My Vinyl Collections" og skjemaet */
-.container h1, .container h2, .collection-header {
-    text-align: center !important;
-    width: 100% !important;
-    margin-bottom: 20px !important;
-}
-
-/* Midtstiller hele "Create Collection"-seksjonen */
-.collection-controls, .create-collection-form {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 15px !important;
-    width: 100% !important;
-    margin-bottom: 40px !important;
-}
-
-/* Tvinger Open og Delete-knappene til å være identiske */
-.collection-card button, 
-.collection-card .open-btn, 
-.collection-card .delete-btn {
-    margin-bottom: 10px !important; 
-    width: 100% !important;
-    max-width: 140px !important; /* Fast bredde for begge */
-    height: 45px !important;    /* Fast høyde for begge */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;      /* Fjerner ulik padding */
-}
-
-.collection-card button:last-child {
-    margin-bottom: 0 !important;
-}
 
 .collection-card .icon {
     font-size: 45px; 
     margin-bottom: 12px;
     display: block;
 }
+
 
 .collection-card strong {
     font-size: 1.1rem;
@@ -130,10 +92,12 @@ main, .container {
     margin-bottom: 4px;
 }
 
+
 .collection-card span {
     font-size: 0.85rem;
     color: #666;
 }
+
 
 form, .form-container {
     width: 100%;
@@ -155,6 +119,7 @@ input {
     text-align: center;
 }
 
+
 .terms-container {
     display: flex !important;
     flex-direction: row !important;
@@ -164,6 +129,13 @@ input {
     width: 100%;
     margin: 10px 0 25px 0;
 }
+
+.terms-container input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+}
+
 
 footer, .legal-links {
     margin-top: 25px;
@@ -178,6 +150,7 @@ footer a, .legal-links a {
     font-size: 0.85rem;
     font-weight: 600;
 }
+
 
 button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     padding: 12px 28px;
@@ -197,6 +170,8 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     box-shadow: 0 5px 0px #0d2a38 !important;
 }
 
+header { display: none !important; }
+
 .album-item {
     background: #FAFAFA !important; 
     padding: 15px 20px !important;
@@ -210,7 +185,11 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     text-align: left !important;
     width: 100% !important;
     box-sizing: border-box;
+    box-shadow: none !important;
+    min-height: auto !important; 
+    
 }
+
 
 .album-item strong {
     font-size: 1.1rem !important;
@@ -218,9 +197,8 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     margin-bottom: 4px !important;
 }
 
+
 .album-item span {
     font-size: 0.85rem !important;
     color: #888 !important;
 }
-
-header { display: none !important; }

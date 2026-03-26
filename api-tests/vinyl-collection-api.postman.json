@@ -13,12 +13,11 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000",
+          "raw": "http://localhost:3000/collections/all",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000"
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["collections", "all"]
         }
       },
       "response": []
@@ -27,17 +26,19 @@
       "name": "Create collection",
       "request": {
         "method": "POST",
-        "header": [],
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"My Favourite Records\",\n  \"userId\": 1\n}"
+        },
         "url": {
           "raw": "http://localhost:3000/collections",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["localhost"],
           "port": "3000",
-          "path": [
-            "collections"
-          ]
+          "path": ["collections"]
         }
       },
       "response": []
@@ -50,19 +51,11 @@
         "url": {
           "raw": "http://localhost:3000/collections/:id",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["localhost"],
           "port": "3000",
-          "path": [
-            "collections",
-            ":id"
-          ],
+          "path": ["collections", ":id"],
           "variable": [
-            {
-              "key": "id",
-              "value": ""
-            }
+            { "key": "id", "value": "1" }
           ]
         }
       },
@@ -72,23 +65,21 @@
       "name": "Update collection",
       "request": {
         "method": "PUT",
-        "header": [],
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated Collection Title\"\n}"
+        },
         "url": {
           "raw": "http://localhost:3000/collections/:id",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["localhost"],
           "port": "3000",
-          "path": [
-            "collections",
-            ":id"
-          ],
+          "path": ["collections", ":id"],
           "variable": [
-            {
-              "key": "id",
-              "value": ""
-            }
+            { "key": "id", "value": "1" }
           ]
         }
       },
@@ -102,19 +93,11 @@
         "url": {
           "raw": "http://localhost:3000/collections/:id",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["localhost"],
           "port": "3000",
-          "path": [
-            "collections",
-            ":id"
-          ],
+          "path": ["collections", ":id"],
           "variable": [
-            {
-              "key": "id",
-              "value": ""
-            }
+            { "key": "id", "value": "1" }
           ]
         }
       },
@@ -124,24 +107,21 @@
       "name": "Add album to collection",
       "request": {
         "method": "POST",
-        "header": [],
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Abbey Road\",\n  \"artist\": \"The Beatles\"\n}"
+        },
         "url": {
-          "raw": "http://localhost:3000/collections/:id/albums\n",
+          "raw": "http://localhost:3000/collections/:id/albums",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["localhost"],
           "port": "3000",
-          "path": [
-            "collections",
-            ":id",
-            "albums\n"
-          ],
+          "path": ["collections", ":id", "albums"],
           "variable": [
-            {
-              "key": "id",
-              "value": ""
-            }
+            { "key": "id", "value": "1" }
           ]
         }
       },
@@ -151,23 +131,21 @@
       "name": "Update album",
       "request": {
         "method": "PUT",
-        "header": [],
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated Album Title\",\n  \"artist\": \"Updated Artist\"\n}"
+        },
         "url": {
-          "raw": "http://localhost:3000/albums/:id\n",
+          "raw": "http://localhost:3000/albums/:id",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["localhost"],
           "port": "3000",
-          "path": [
-            "albums",
-            ":id\n"
-          ],
+          "path": ["albums", ":id"],
           "variable": [
-            {
-              "key": "id\n",
-              "value": ""
-            }
+            { "key": "id", "value": "1" }
           ]
         }
       },
@@ -179,21 +157,13 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/albums/:id\n",
+          "raw": "http://localhost:3000/albums/:id",
           "protocol": "http",
-          "host": [
-            "localhost"
-          ],
+          "host": ["localhost"],
           "port": "3000",
-          "path": [
-            "albums",
-            ":id\n"
-          ],
+          "path": ["albums", ":id"],
           "variable": [
-            {
-              "key": "id\n",
-              "value": ""
-            }
+            { "key": "id", "value": "1" }
           ]
         }
       },
