@@ -336,80 +336,54 @@ header { display: none !important; }
   width: 100%;
 }
 
+
 .detail-header {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 16px;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
-.back-btn {
+.back-btn #back-btn {
   flex-shrink: 0;
+  align-self: flex-start;
+  margin-bottom: 20px;   
 }
 
 .detail-title {
-  flex: 1;
-  text-align: center;
+  text-align: left;
   margin: 0;
+  flex: 1;
 }
 
-/* ── Two column layout ── */
+
 .detail-body {
   display: flex;
-  flex-direction: row;
-  gap: 32px;
-  width: 100%;
-  align-items: flex-start;
-}
-
-.detail-left {
-  flex: 1;
-  display: flex;
   flex-direction: column;
+  gap: 20px;
+  width: 100%;
+
 }
 
-.detail-right {
-  flex: 1;
+.detail-left, .detail-right {
+  width: 100%;
+    flex: none;
 }
-
-.detail-right--full {
-  flex: 2;
-}
-
-/* ── Album add form compact ── */
-.detail-left .form-container {
-  width: 100% !important;
-  max-width: 100% !important;
-  align-items: flex-start !important;
-}
-
-.detail-left input {
-  width: 100% !important;
-  max-width: 100% !important;
-  text-align: left !important;
-  padding-left: 20px;
-}
-
-.detail-left button[type="submit"] {
-  width: auto !important;
-  align-self: flex-start;
-}
-
 
 .album-list {
-  list-style: none;
-  width: 100%;
-  padding: 0;
-  margin: 0;
+    width: 100%;
+    padding: 0;
+  margin: 20px;
+ 
 }
 
 .detail-right h3 {
-  text-align: left;
-  margin-bottom: 15px;
-  color: #1B475D;
+    text-align: left;
+    margin-bottom: 15px;
+    color: #1B475D;
 }
-
 
 .delete-account-section {
   margin-top: auto;
@@ -424,53 +398,21 @@ header { display: none !important; }
   font-weight: 600;
 }
 
-/* ── Create collection form full width ── */
-collection-create .form-container {
+#collection-section .section-full .form-container {
   width: 100%;
   max-width: 100%;
   align-items: stretch;
 }
 
-collection-create input {
+#collection-section .section-full input {
   width: 100% !important;
   max-width: 100% !important;
   text-align: left;
   padding-left: 20px;
 }
 
-/* ── Force two column detail layout ── */
-.detail-body {
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 32px !important;
-  width: 100% !important;
-  align-items: flex-start !important;
-}
-
-.detail-left {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-}
-
-.detail-right {
-  flex: 1 !important;
-  align-items: flex-start !important;
-}
-
-.detail-left .form-container {
-  width: 100% !important;
-  max-width: 100% !important;
-  align-items: flex-start !important;
-}
-
-.detail-left input {
-  max-width: 100% !important;
-  text-align: left !important;
-  padding-left: 20px !important;
-}
-
-.detail-left button[type="submit"] {
-  width: auto !important;
+#collection-section .section-full .add-vinyl-btn {
+  width: 100%;
+  max-width: 100%;
+  align-self: stretch;
 }
