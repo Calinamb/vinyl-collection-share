@@ -394,7 +394,7 @@ header { display: none !important; }
   width: auto !important;
 }
 
-/* ── Album list ── */
+
 .album-list {
   list-style: none;
   width: 100%;
@@ -408,7 +408,7 @@ header { display: none !important; }
   color: #1B475D;
 }
 
-/* ── Delete account section ── */
+
 .delete-account-section {
   margin-top: auto;
   padding-top: 24px;
@@ -420,4 +420,29 @@ header { display: none !important; }
   color: #e05c5c;
   margin-bottom: 8px;
   font-weight: 600;
+}
+
+
+.welcome-title {
+    text-align: center !important;
+    color: #1B475D !important;
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+}
+
+
+#login-section h2, 
+#login-section p {
+    text-align: center !important;
+    width: 100% !important;
+}
+
+.detail-title, 
+.detail-right h3, 
+.albums-heading,
+.section-full h2 {
+    text-align: center !important;
+    width: 100% !important;
 }
