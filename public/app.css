@@ -174,11 +174,6 @@ button, .open-btn, #loginBtn, #registerBtn, .add-vinyl-btn {
     box-shadow: 0 5px 0px #e5c04f;
 }
 
-#back-btn, #backBtn {
-    background-color: #1B475D !important;
-    color: #ffffff !important;
-    box-shadow: 0 5px 0px #0d2a38 !important;
-}
 
 header { display: none !important; }
 
@@ -368,12 +363,10 @@ detail-header {
 }
 
 .back-btn {
-    position: absolute !important;
-    left: 0 !important; 
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    margin: 0 !important;
-    z-index: 5;
+    background-color: #1B475D !important;
+    color: #ffffff !important;
+    box-shadow: 0 5px 0px #0d2a38 !important;
+    position: static !important;
 }
 
 .detail-title {
@@ -477,4 +470,10 @@ main {
 .section-full h2 {
     text-align: center !important;
     width: 100% !important;
+}
+
+.back-btn {
+  position: static !important;
+  display: inline-block;
+  margin-bottom: 16px;
 }
