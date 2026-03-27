@@ -352,7 +352,7 @@ header { display: none !important; }
     width: 100% !important;
 }
 
-detail-header {
+.detail-header {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -362,12 +362,6 @@ detail-header {
     padding: 0 !important; 
 }
 
-.back-btn {
-    background-color: #1B475D !important;
-    color: #ffffff !important;
-    box-shadow: 0 5px 0px #0d2a38 !important;
-    position: static !important;
-}
 
 .detail-title {
     text-align: center !important;
@@ -473,6 +467,9 @@ main {
 }
 
 .back-btn {
+  background-color: #1B475D !important;
+  color: #ffffff !important;
+  box-shadow: 0 5px 0px #0d2a38 !important;
   position: static !important;
   display: inline-block;
   margin-bottom: 16px;
