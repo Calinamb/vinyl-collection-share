@@ -437,3 +437,40 @@ collection-create input {
   text-align: left;
   padding-left: 20px;
 }
+
+/* ── Force two column detail layout ── */
+.detail-body {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 32px !important;
+  width: 100% !important;
+  align-items: flex-start !important;
+}
+
+.detail-left {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.detail-right {
+  flex: 1 !important;
+  align-items: flex-start !important;
+}
+
+.detail-left .form-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  align-items: flex-start !important;
+}
+
+.detail-left input {
+  max-width: 100% !important;
+  text-align: left !important;
+  padding-left: 20px !important;
+}
+
+.detail-left button[type="submit"] {
+  width: auto !important;
+}
