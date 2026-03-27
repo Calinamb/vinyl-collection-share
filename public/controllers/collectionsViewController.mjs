@@ -33,6 +33,11 @@ export default class CollectionsViewController {
 
   renderNavigation() {
   const username = localStorage.getItem("username") || "User";
+  
+  // Use the dedicated nav section outside main
+  const navSection = document.getElementById("nav-section");
+  navSection.innerHTML = ""; // clear before re-rendering
+  
   const nav = document.createElement("div");
   nav.className = "nav-container";
   nav.innerHTML = `
@@ -59,7 +64,7 @@ export default class CollectionsViewController {
     </nav>
   `;
 
-  this.rootEl.appendChild(nav);
+  navSection.appendChild(nav);
 
   nav.querySelector("#hamburger-btn").addEventListener("click", () => {
     nav.querySelector("#side-drawer").classList.add("side-drawer--open");
