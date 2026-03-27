@@ -309,6 +309,7 @@ header { display: none !important; }
 }
 
 
+
 .collection-owner {
   font-size: 0.8rem;
   margin: 5px 0;
@@ -337,54 +338,77 @@ header { display: none !important; }
 }
 
 
+/* ── Detail header ── */
 .detail-header {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   gap: 16px;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
-.back-btn #back-btn {
+.back-btn {
   flex-shrink: 0;
-  align-self: flex-start;
-  margin-bottom: 20px;   
 }
 
 .detail-title {
-  text-align: left;
-  margin: 0;
   flex: 1;
+  text-align: center;
+  margin: 0;
 }
 
-
+/* ── Detail body vertical layout ── */
 .detail-body {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 20px;
-  width: 100%;
-
 }
 
-.detail-left, .detail-right {
+.detail-left {
   width: 100%;
-    flex: none;
 }
 
+.detail-right {
+  width: 100%;
+}
+
+/* ── Album add form ── */
+.detail-left .form-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  align-items: flex-start !important;
+  background: #f9f9f9;
+  border-radius: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.detail-left input {
+  max-width: 100% !important;
+  text-align: left !important;
+  padding-left: 20px !important;
+}
+
+.detail-left button[type="submit"] {
+  width: auto !important;
+}
+
+/* ── Album list ── */
 .album-list {
-    width: 100%;
-    padding: 0;
-  margin: 20px;
- 
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .detail-right h3 {
-    text-align: left;
-    margin-bottom: 15px;
-    color: #1B475D;
+  text-align: left;
+  margin-bottom: 15px;
+  color: #1B475D;
 }
 
+/* ── Delete account section ── */
 .delete-account-section {
   margin-top: auto;
   padding-top: 24px;
@@ -396,23 +420,4 @@ header { display: none !important; }
   color: #e05c5c;
   margin-bottom: 8px;
   font-weight: 600;
-}
-
-#collection-section .section-full .form-container {
-  width: 100%;
-  max-width: 100%;
-  align-items: stretch;
-}
-
-#collection-section .section-full input {
-  width: 100% !important;
-  max-width: 100% !important;
-  text-align: left;
-  padding-left: 20px;
-}
-
-#collection-section .section-full .add-vinyl-btn {
-  width: 100%;
-  max-width: 100%;
-  align-self: stretch;
 }
