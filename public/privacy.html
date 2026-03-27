@@ -1,38 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Privacy Policy</title>
-    <link rel="stylesheet" href="./app.css" /> 
-    <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="./app.css" />
+  <link rel="manifest" href="./manifest.json"/>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
+  <main id="privacy-content">
+  </main>
+  <script type="module">
+    import { getLang } from "./modules/i18n.mjs";
+    const lang = getLang();
+    const content = {
+      en: {
+        title: "Privacy Policy",
+        intro: "This application collects minimal personal data required to create a user account.",
+        collected_title: "Collected data includes:",
+        items: [
+          "User ID (system generated)",
+          "Username",
+          "Consent confirmation",
+          "Account creation date"
+        ],
+        purpose: "The purpose of collecting this data is solely to allow users to create and manage vinyl collections.",
+        deletion: "Users may request deletion of their account at any time. When an account is deleted, all personal data related to the user is removed.",
+        security: "User data is stored in a cloud-based PostgreSQL database. No sensitive personal data beyond a username is collected.",
+        consent: "Users must actively consent to this privacy policy before an account is created.",
+        back: "← Go Back"
+      },
+      no: {
+        title: "Personvernerklæring",
+        intro: "Denne applikasjonen samler inn minimalt med persondata som kreves for å opprette en brukerkonto.",
+        collected_title: "Innsamlede data inkluderer:",
+        items: [
+          "Bruker-ID (systemgenerert)",
+          "Brukernavn",
+          "Bekreftelse av samtykke",
+          "Dato for kontoopprettelse"
+        ],
+        purpose: "Formålet med å samle inn disse dataene er utelukkende å la brukere opprette og administrere vinylsamlinger.",
+        deletion: "Brukere kan når som helst be om sletting av kontoen sin. Når en konto slettes, fjernes alle personlige data knyttet til brukeren.",
+        security: "Brukerdata lagres i en skybasert PostgreSQL-database. Ingen sensitiv persondata utover et brukernavn samles inn.",
+        consent: "Brukere må aktivt samtykke til denne personvernerklæringen før en konto opprettes.",
+        back: "← Gå tilbake"
+      },
+      fr: {
+        title: "Politique de confidentialité",
+        intro: "Cette application collecte un minimum de données personnelles nécessaires à la création d'un compte utilisateur.",
+        collected_title: "Les données collectées comprennent:",
+        items: [
+          "ID utilisateur (généré par le système)",
+          "Nom d'utilisateur",
+          "Confirmation du consentement",
+          "Date de création du compte"
+        ],
+        purpose: "L'objectif de la collecte de ces données est uniquement de permettre aux utilisateurs de créer et gérer des collections de vinyles.",
+        deletion: "Les utilisateurs peuvent demander la suppression de leur compte à tout moment. Lorsqu'un compte est supprimé, toutes les données personnelles liées à l'utilisateur sont supprimées.",
+        security: "Les données utilisateur sont stockées dans une base de données PostgreSQL hébergée dans le cloud. Aucune donnée personnelle sensible au-delà d'un nom d'utilisateur n'est collectée.",
+        consent: "Les utilisateurs doivent activement consentir à cette politique de confidentialité avant la création d'un compte.",
+        back: "← Retour"
+      }
+    };
 
-  <p>
-    This application collects minimal personal data required to create a user account.
-  </p>
-
-  <p>
-    Collected data includes:
-  </p>
-  <ul>
-    <li>User ID (system generated)</li>
-    <li>Username</li>
-    <li>Consent confirmation</li>
-    <li>Account creation date</li>
-  </ul>
-
-  <p>
-    The purpose of collecting this data is solely to allow users to create and manage vinyl collections.
-  </p>
-
-  <p>
-    Users may request deletion of their account at any time.
-  </p>
-  <div style="margin-top: 40px; text-align: center;">
-    <button onclick="history.back()" id="back-btn">← Go Back</button>
-</div>
-
+    const c = content[lang] || content.en;
+    document.getElementById("privacy-content").innerHTML = `
+      <h1>${c.title}</h1>
+      <p>${c.intro}</p>
+      <p>${c.collected_title}</p>
+      <ul style="text-align: left; margin-bottom: 20px;">
+        ${c.items.map(item => `<li>${item}</li>`).join("")}
+      </ul>
+      <p>${c.purpose}</p>
+      <p>${c.deletion}</p>
+      <p>${c.security}</p>
+      <p>${c.consent}</p>
+      <div style="margin-top: 40px; text-align: center;">
+        <button onclick="history.back()" id="back-btn">${c.back}</button>
+      </div>
+    `;
+  </script>
 </body>
 </html>

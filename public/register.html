@@ -4,29 +4,36 @@
     <meta charset="UTF-8">
     <title>Vinyl Share - Register</title>
     <link rel="stylesheet" href="./app.css">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./manifest.json"/>
 </head>
 <body>
     <main>
-        <h1>Create Account</h1>
+        <h1 id="register-title">Create Account</h1>
         <div class="form-container">
             <input id="reg-username" placeholder="Choose Username" required>
             <input id="reg-password" type="password" placeholder="Choose Password" required>
-            
-     <label class="terms-container">
-    <input type="checkbox" id="reg-consent">
-    <span>I agree to the Terms of Service</span>
-    
-</label>
-
+            <label class="terms-container">
+                <input type="checkbox" id="reg-consent">
+                <span id="consent-text">I agree to the Terms of Service</span>
+            </label>
             <button id="registerBtn">Register</button>
         </div>
-
-
-        <p id="reg-message" style="color: red;"></p>
-        <p><a href="index.html">Back to Login</a></p>
+        <p id="reg-message" role="alert" style="color: red;"></p>
+        <p><a href="index.html" id="back-to-login">Back to Login</a></p>
     </main>
-
-    <script src="register.mjs" type="module"></script>
+    <script type="module" src="./translatePage.mjs"></script>
+    <script type="module">
+        import { translatePage, translatePlaceholders } from "./js/translate-page.mjs";
+        translatePage({
+            "register-title": "create_account_title",
+            "consent-text": "consent_text",
+            "registerBtn": "register_btn",
+            "back-to-login": "back_to_login"
+        });
+        translatePlaceholders({
+            "reg-username": "username_placeholder",
+            "reg-password": "password_placeholder"
+        });
+    </script>
 </body>
 </html>

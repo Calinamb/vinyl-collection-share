@@ -1,28 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Terms of Service</title>
-    <link rel="stylesheet" href="./app.css" /> 
+  <link rel="stylesheet" href="./app.css" />
+  <link rel="manifest" href="./manifest.json"/>
 </head>
 <body>
-  <h1>Terms of Service</h1>
-
-  <p>
-    By creating an account, you agree to use this application in a lawful and respectful manner.
-  </p>
-
-  <p>
-    Users retain ownership of the data they create. By using this service, you grant the application
-    permission to store and display your vinyl collections.
-  </p>
-
-  <p>
-    You may delete your account at any time. Deleting your account removes your personal data.
-  </p>
-  <div style="margin-top: 40px; text-align: center;">
-    <button onclick="history.back()" id="back-btn">← Go Back</button>
-</div>
-
+  <main id="tos-content">
+  </main>
+  <script type="module">
+    import { getLang } from "./modules/i18n.mjs";
+    const lang = getLang();
+    const content = {
+      en: {
+        title: "Terms of Service",
+        p1: "By creating an account, you agree to use this application in a lawful and respectful manner.",
+        p2: "Users retain ownership of the data they create. By using this service, you grant the application permission to store and display your vinyl collections.",
+        p3: "You may delete your account at any time. Deleting your account removes your personal data.",
+        back: "← Go Back"
+      },
+      no: {
+        title: "Vilkår for bruk",
+        p1: "Ved å opprette en konto godtar du å bruke denne applikasjonen på en lovlig og respektfull måte.",
+        p2: "Brukere beholder eierskap til dataene de oppretter. Ved å bruke denne tjenesten gir du applikasjonen tillatelse til å lagre og vise dine vinylsamlinger.",
+        p3: "Du kan slette kontoen din når som helst. Sletting av kontoen fjerner dine personlige data.",
+        back: "← Gå tilbake"
+      },
+      fr: {
+        title: "Conditions d'utilisation",
+        p1: "En créant un compte, vous acceptez d'utiliser cette application de manière légale et respectueuse.",
+        p2: "Les utilisateurs conservent la propriété des données qu'ils créent. En utilisant ce service, vous accordez à l'application la permission de stocker et d'afficher vos collections de vinyles.",
+        p3: "Vous pouvez supprimer votre compte à tout moment. La suppression de votre compte supprime vos données personnelles.",
+        back: "← Retour"
+      }
+    };
+    const c = content[lang] || content.en;
+    document.getElementById("tos-content").innerHTML = `
+      <h1>${c.title}</h1>
+      <p>${c.p1}</p>
+      <p>${c.p2}</p>
+      <p>${c.p3}</p>
+      <div style="margin-top: 40px; text-align: center;">
+        <button onclick="history.back()" id="back-btn">${c.back}</button>
+      </div>
+    `;
+  </script>
 </body>
 </html>

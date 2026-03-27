@@ -4,40 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vinyl Collection - Login</title>
-  <link rel="stylesheet" href="./app.css" /> 
- <link rel="manifest" href="./manifest.json">
- 
+  <link rel="stylesheet" href="./app.css" />
+  <link rel="manifest" href="./manifest.json"/>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Vinyl Share</h1>
-  </header>
-
   <main>
     <section id="login-section">
-      <h2>Login</h2>
+      <h2 id="login-heading">Login</h2>
       <div class="form-container">
         <input type="text" id="username" placeholder="Username" required />
         <input type="password" id="password" placeholder="Password" required />
-        
         <button id="loginBtn">Login</button>
       </div>
-
-      <p id="message" style="margin-top: 10px;"></p>
-
+      <p id="message" role="alert" style="margin-top: 10px;"></p>
       <hr />
-      
-      <p>New user? <a href="./register.html">Create an account here</a></p>
+      <p><span id="new-user-text">New user?</span> <a href="./register.html" id="create-account-link">Create an account here</a></p>
     </section>
   </main>
-
-  </main> <footer class="legal-links">
-        <a href="tos.html">Terms of Service</a>
-        <span>|</span>
-        <a href="privacy.html">Privacy Policy</a>
-    </footer>
-
-
-  <script type="module" src="login.mjs"></script>
+  <footer class="legal-links">
+    <a href="tos.html">Terms of Service</a>
+    <span>|</span>
+    <a href="privacy.html">Privacy Policy</a>
+  </footer>
+  <script type="module" src="./translatePage.mjs"></script>
+  <script type="module">
+    import { translatePage, translatePlaceholders } from "./translatePage.mjs";
+    translatePage({
+      "login-heading": "login_heading",
+      "loginBtn": "login_btn",
+      "new-user-text": "new_user_text",
+      "create-account-link": "create_account_link"
+    });
+    translatePlaceholders({
+      "username": "username_placeholder",
+      "password": "password_placeholder"
+    });
+  </script>
 </body>
 </html>
