@@ -1,6 +1,6 @@
-const CACHE_NAME = "vinyl-share-v2";
+const CACHE_NAME = "vinyl-share-v3";
 const ASSETS = [
-  "/",
+   "/",
   "/index.html",
   "/app.html",
   "/register.html",
