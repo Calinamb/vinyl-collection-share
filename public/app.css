@@ -44,6 +44,16 @@ main, .container {
     align-items: center; 
 }
 
+.main-welcome-title {
+    text-align: center !important;
+    color: #1B475D !important;
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 30px !important; 
+    width: 100% !important;
+    max-width: 800px !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
 
 .collection-grid {
     display: grid;
@@ -338,17 +348,29 @@ header { display: none !important; }
 }
 
 
-/* ── Detail header ── */
-.detail-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  margin-bottom: 24px;
+
+.detail-title {
+ 
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  
+ 
+  text-align: center !important;
+  margin: 0 !important;
+  width: auto !important;
+  white-space: nowrap !important; 
+  
+
+  color: #1B475D !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
 }
 
 .back-btn {
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  z-index: 10; 
 }
 
 .detail-title {
@@ -357,7 +379,7 @@ header { display: none !important; }
   margin: 0;
 }
 
-/* ── Detail body vertical layout ── */
+
 .detail-body {
   display: flex;
   flex-direction: column;
@@ -373,7 +395,7 @@ header { display: none !important; }
   width: 100%;
 }
 
-/* ── Album add form ── */
+
 .detail-left .form-container {
   width: 100% !important;
   max-width: 100% !important;
