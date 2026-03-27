@@ -7,6 +7,7 @@ const loginBtn = document.getElementById("loginBtn");
 const message = document.getElementById("message");
 
 loginBtn.addEventListener("click", async () => {
+    e.preventDefault()
     const username = usernameInput.value.trim();
     const password = passwordInput.value.trim();
 
@@ -37,4 +38,4 @@ loginBtn.addEventListener("click", async () => {
     } catch (err) {
         message.innerText = err.message || t("error_login_failed");
     }
-});
+});x
