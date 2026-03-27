@@ -16,18 +16,18 @@ export default class UsersViewController {
   render() {
     this.rootEl.innerHTML = `
       <section>
-        <h2>${t("users_title")}</h2>
-        <ul>
-          ${this.users.map(u => `
-            <li>
-              <strong>${escapeHtml(u.username)}</strong>
-              <small style="opacity:.7">(${u.id})</small>
-              <div style="margin-top:6px">
-                <user-edit user-id="${u.id}" username="${escapeAttr(u.username)}"></user-edit>
-                <user-delete user-id="${u.id}"></user-delete>
-              </div>
-            </li>
-          `).join("")}
+      <h2>${t("users_title")}</h2>
+      <ul>
+      ${this.users.map(u => `
+      <li>
+      <strong>${escapeHtml(u.username)}</strong>
+      <small style="opacity:.7">(${u.id})</small>
+      <div style="margin-top:6px">
+      <user-edit user-id="${u.id}" username="${escapeAttr(u.username)}"></user-edit>
+      <user-delete user-id="${u.id}"></user-delete>
+      </div>
+      </li>
+      `).join("")}
         </ul>
       </section>
     `;
@@ -71,18 +71,18 @@ class UserCreate extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <section>
-        <h2>${t("create_user_title")}</h2>
-        <form id="f">
-          <label>
-            ${t("username_label")}
-            <input name="username" required />
-          </label>
-          <label style="display:block; margin-top:8px;">
-            <input type="checkbox" name="consent" />
-            ${t("consent_label")}
-          </label>
-          <button type="submit" style="margin-top:8px;">${t("create_user_btn")}</button>
-          <p id="msg" style="color:#b00;"></p>
+      <h2>${t("create_user_title")}</h2>
+      <form id="f">
+      <label>
+      ${t("username_label")}
+      <input name="username" required />
+      </label>
+      <label style="display:block; margin-top:8px;">
+      <input type="checkbox" name="consent" />
+      ${t("consent_label")}
+      </label>
+      <button type="submit" style="margin-top:8px;">${t("create_user_btn")}</button>
+        <p id="msg" style="color:#b00;"></p>
         </form>
       </section>
     `;
@@ -126,8 +126,8 @@ class UserEdit extends HTMLElement {
 
     this.innerHTML = `
       <label>
-        <span style="display:none">${t("edit_label")}</span>
-        <input value="${escapeAttr(username)}" />
+      <span style="display:none">${t("edit_label")}</span>
+      <input value="${escapeAttr(username)}" />
       </label>
       <button type="button">${t("save_btn")}</button>
     `;

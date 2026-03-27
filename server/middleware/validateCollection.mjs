@@ -5,6 +5,9 @@ const translations = {
     },
     no: {
         error_title: "Validering feilet: Samlingen må ha en tittel."
+    },
+    fr: {
+        error_title: "Échec de la validation : Un titre de collection est requis."
     }
 };
 
